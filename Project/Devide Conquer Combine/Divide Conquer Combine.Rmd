@@ -1,0 +1,230 @@
+---
+title: "Mini Project Kelompok 10"
+author: "Raynaldi, Muhammad Taqi Husaini, Fahri Muhammad"
+date: "2025-12-04"
+output:
+  html_document:
+---
+
+```{r html-deps, echo=FALSE}
+htmltools::attachDependencies(
+  htmltools::tagList(),
+  htmltools::htmlDependency(
+    name = "custom-toc",
+    version = "1.0.0",
+    src = "../assets",
+    script = "js/script.js",
+    stylesheet = "css/style.css"
+  )
+)
+```
+
+**Algoritma dan Pemrograman**
+
+<nav id="custom-toc" aria-label="Daftar Isi">
+
+::: {#toc-title}
+Daftar Isi
+:::
+
+::: {#toc-content}
+:::
+
+</nav>
+
+# **Divide, Conquer, Combine**
+
+**Pertemuan 9**
+
+# Definisi
+
+## Divide
+
+Divide adalah tahap yang memecah masalah integer programming kompleks menjadi sub-masalah yang lebih kecil dan terstruktur, dilakukan secara rekursif untuk mencapai ukuran yang memungkinkan penyelesaian lebih mudah dan efisien.
+
+## Conquer
+
+Conquer menyelesaikan sub-masalah secara independen, menggunakan teknik optimasi lokal yang sesuai atau penyelesaian langsung jika sub-masalah mencapai kondisi dasar, sehingga mempercepat proses pemecahan masalah keseluruhan.
+
+## Combine
+
+Combine menggabungkan solusi-solusi sub-masalah menjadi solusi global yang optimal dengan metode agregasi yang efisien, memastikan hasil akhir memenuhi kriteria solusi terbaik untuk masalah asli.
+
+------------------------------------------------------------------------
+
+# Konsep Tambahan
+
+Dalam paradigma Divide, Conquer, dan Combine, terdapat 4 konsep tambahan yang memperkaya proses algoritma ini. **Branching factor dan balance** berperan pada tahap **Divide**, dimana branching factor menentukan jumlah sub-bagian yang dihasilkan saat memecah masalah, sementara balance memastikan setiap sub-bagian memiliki ukuran seragam agar pemrosesan efisien. Selanjutnya **data dependence of divide function** pada **Divide** menyesuaikan pembagian berdasarkan nilai data, dan pada tahap **Conquer** konsep **control parallelism or sequentially** memungkinkan pilihan antara pemrosesan paralel untuk kecepatan atau sequential untuk eksekusi berurutan. Semua konsep ini terintegrasi hingga tahap **Combine** yang menggabungkan solusi sub-masalah menjadi hasil akhir optimal.
+
+## Branching Factor
+
+**Branching factor** adalah jumlah sub-bagian yang dihasilkan saat memecah masalah menjadi bagian-bagian yang lebih kecil pada langkah Divide. Semakin banyak bagian yang dihasilkan pada setiap langkah, semakin tinggi branching factor-nya, sehingga memengaruhi kompleksitas rekursi keseluruhan dalam proses Divide, Conquer, dan Combine.
+
+### Contoh
+
+-   Array `[1, 2, 3, 4]` dibagi menjadi 2 bagian → Branching Factor = 2
+-   Array `[1, 2, 3, 4, 5, 6]` dibagi menjadi 3 bagian → Branching Factor = 3
+
+**Intinya**
+
+Branching Factor menunjukkan seberapa banyak bagian kecil yang dihasilkan pada setiap langkah.
+
+## Balance
+
+### Pengertian
+
+**Balance** memiliki arti bahwa setiap sub-bagian yang dipecah pada tahap **Divide** memiliki ukuran atau beban yang sama sehingga proses pemecahannya adil dan efisien, menghindari ketidakseimbangan yang dapat menurunkan performa algoritma secara keseluruhan.
+
+### Contoh
+
+-   `[3, 5, 2, 7]` → `[3, 5]` dan `[2, 7]`
+-   `[11, 5, 7, 3, 9]` → `[11, 5]` dan `[7, 3, 9]`
+
+**Intinya**
+
+Balance memastikan pemecahan masalah dilakukan secara efisien dan merata.
+
+## Data Dependence of Divide Function
+
+### Pengertian
+
+**Data Dependence of Divide Function** pada tahap **Divide** bergantung pada nilai-nilai data yang ada, artinya pembagian tidak hanya didasarkan pada jumlah elemen tetapi juga sifat atau nilai data tersebut untuk menentukan cara pemecahan terbaik.
+
+### Contoh
+
+Mencari elemen pada `[1, 3, 5, 7, 9]` → dibagi berdasarkan nilai tengah (5).
+
+**Intinya**
+
+Pembagian mempertimbangkan nilai elemen agar pemecahan lebih efektif.
+
+------------------------------------------------------------------------
+
+## Control Parallelism dan Sequentially
+
+### Control Parallelism
+
+**Control Parallelism** pada tahap **Conquer** adalah pendekatan yang memungkinkan bagian-bagian dari masalah diproses secara bersamaan setelah dibagi, sehingga mempercepat pemrosesan dengan memanfaatkan sumber daya komputasi secara paralel.
+
+Contoh: Menjumlahkan `[2, 4]` dan `[6, 8]` secara bersamaan.
+
+**Intinya**
+
+Control Parallelism mempercepat pemrosesan dengan melakukan tugas-tugas secara bersamaan.
+
+### Sequentially
+
+**Sequentially** pada tahap **Conquer** memproses bagian-bagian dari masalah secara berurutan satu per satu setelah dibagi, memastikan setiap sub-masalah diselesaikan secara bergantian tanpa pemrosesan bersamaan.
+
+### Contoh
+
+Menghitung jumlah elemen array `[2, 4, 6, 8]` dengan menambahkan elemen satu per satu dalam urutan.
+
+**Intinya** Sequentially memastikan bahwa setiap bagian diproses satu per satu, tanpa ada bagian yang diproses bersamaan.
+
+------------------------------------------------------------------------
+
+# Ilustrasi dan Kasus
+
+Fahri Muhammad adalah mahasiswa baru Statistika di Universitas Sultan Ageng Tirtayasa (Untirta). Ia sedang mengerjakan tugas Algoritma Pemrograman. Ia punya array NIM 33 teman sekelasnya yang acak: `[3338250042, 3338250027, 3338250058, 3338250019, 3338250034, ...]` tapi untuk presentasi ia ambil 5 NIM pertama dari paling depan.
+
+## **Langkah Algoritma penyelesaiannya**
+
+Fahri terapkan **Merge Sort**:
+
+Divide (Branching Factor: 2): "Pecah dulu jadi 2 bagian balance!"
+
+-   Bagian 1: `[3338250042, 3338250027, 3338250058]` (3 NIM)
+-   Bagian 2: `[3338250019, 3338250034]` (2 NIM) Balance 60:40
+
+Divide lagi (Data Dependence: index-based):
+
+-   1a: `[3338250042]`
+-   1b: `[3338250027, 3338250058]`
+-   2a: `[3338250019]`
+-   2b: `[3338250034]`
+
+Conquer (Control Parallelism): "Urutkan 4 sub-array secara paralel" - Iterasi 1b: `[3338250027, 3338250058]` -\> Divide: `[3338250027]` + `[3338250058]` -\> sudah urut Semua single element -\> sudah urut
+
+Combine (Sequentially):
+
+-   1a: `[3338250042]` + 1b: `[3338250027, 3338250058]` -\> Bagian 1: `[3338250027, 3338250042, 3338250058]`
+-   2a: `[3338250019]` + 2b: `[3338250034]` -\> `[3338250019, 3338250034]`
+-   Final: Bagian 1 + Bagian 2 -\> `[3338250019, 3338250027, 3338250034, 3338250042, 3338250058]`
+
+fahri mendapatkan array terurut dikelasnya menggukan prinsip divide, conquer, combine.
+
+Dosen, "Nim dengan nomor belakang `19, 27, 34, 42, 58` silahkan maju kedepan"
+
+## Implementasi R
+
+```{r ilustrasi,  fig.cap="Ilustrasi Divide, Conquer, Combine"}
+merge_sort_dc <- function(arr, depth = 0) {
+  cat(sprintf("Level %d - Branching Factor: 2\n", depth))
+  
+  n <- length(arr)
+  if(n <= 1) {
+    cat(sprintf("Base case: %s\n", paste(arr, collapse=", ")))
+    return(arr)
+  }
+  
+  # Divide (Balance & Data Dependence, dan juga Branching Factor)
+  mid <- ceiling(n/2)
+  left <- arr[1:mid]
+  right <- arr[(mid+1):n]
+  
+  cat(sprintf("Balance: Pecah %d → Left:%d Right:%d (Data Dependence: index-based)\n", 
+              n, length(left), length(right)))
+  
+  # Conquer (Control Parallelism)
+  left_sorted <- merge_sort_dc(left, depth+1)
+  right_sorted <- merge_sort_dc(right, depth+1)
+  
+  # Combine (Sequentially)
+  result <- merge(left_sorted, right_sorted)
+  cat(sprintf("Combine: [%s] + [%s] → [%s]\n", 
+              paste(left_sorted, collapse=","), 
+              paste(right_sorted, collapse=","), 
+              paste(result, collapse=",")))
+  return(result)
+}
+
+merge <- function(a, b) {
+  if(length(a) == 0) return(b)
+  if(length(b) == 0) return(a)
+  if(a[1] <= b[1]) return(c(a[1], merge(a[-1], b)))
+  return(c(b[1], merge(a, b[-1])))
+}
+
+# Test
+set.seed(123)
+nim <- sample(3338250001:3338250099, 5)
+cat("NIM Awal:", nim, "\n")
+hasil <- merge_sort_dc(nim)
+cat("Hasil Terurut:", hasil, "\n")
+
+```
+
+**Penjelasan syntax**
+
+`("Pecah %d → Left:%d Right:%d", n, left, right)`
+
+`|    |         |      |       |`
+
+`|    |         |      |       → right=2`
+
+`|    |         |      → left=3`
+
+`|    |         → n=5`
+
+`|    → %d (integer)`
+
+`→ %d (integer)`
+
+
+
+
+
+# Daftar Pustaka
+
+Yang, C., Ning, X., Yu, D., Sun, H., Kang, G., & Wang, H. (2025). A divide-and-conquer strategy for integer programming problems. Electronic Research Archive, 33(6), 3950-3967. <https://doi.org/10.3934/era.2025175>
