@@ -1,8 +1,12 @@
+/* Global: layout & font */
+
 @import url(../font/font.css);
+
 :root {
   --content-width: 900px;
 }
 
+/* Elemen utama dengan lebar konten terpusat */
 #header,
 .main-title,
 .container,
@@ -13,7 +17,9 @@
   margin-right: auto;
 }
 
-/*Header*/
+
+/* Header utama (judul dokumen) */
+
 #header {
   font-family: "JetBrains Mono", monospace;
   border: 4px solid #000;
@@ -22,17 +28,20 @@
   box-shadow: 6px 6px 0 #000;
 }
 
+/* Judul dalam header */
 h1.title {
   font-weight: 800;
   margin-bottom: 0.2em;
 }
 
+/* Subjudul di bawah title */
 p.subtitle {
   text-align: center;
   font-size: 1.4rem;
   margin-top: 0;
 }
 
+/* Info penulis dan tanggal */
 p.author,
 p.date {
   text-align: center;
@@ -40,25 +49,20 @@ p.date {
   opacity: 0.8;
 }
 
-/* =========================
-   MAIN TITLE CONTAINER
-========================= */
+
+/* Blok judul utama (main title di tengah halaman) */
 
 .main-title {
   border: 4px solid #000;
   padding: 24px 20px;
   margin: 30px auto;
-
   text-align: center;
   background: #fff;
   box-shadow: 6px 6px 0 #000;
   font-family: "JetBrains Mono", monospace;
 }
 
-/* =========================
-   MAIN TITLE TEXT
-========================= */
-
+/* Teks judul utama */
 .title-main {
   font-size: 2.2rem;
   font-weight: 800;
@@ -66,10 +70,7 @@ p.date {
   margin-bottom: 8px;
 }
 
-/* =========================
-   SUB TITLE
-========================= */
-
+/* Teks subjudul utama */
 .title-sub {
   font-size: 1.5rem;
   font-weight: 500;
@@ -77,11 +78,7 @@ p.date {
 }
 
 
-
-
-/* =========================
-   TOC CONTAINER
-========================= */
+/* TOC (Table of Contents) – kontainer & tombol utama */
 
 #custom-toc {
   width: 200px;
@@ -90,10 +87,7 @@ p.date {
   margin-bottom: 40px;
 }
 
-/* =========================
-   TOC TITLE (MAIN BUTTON)
-========================= */
-
+/* Judul TOC yang bisa diklik */
 #toc-title {
   border: 4px solid #000;
   padding: 10px 20px;
@@ -103,7 +97,6 @@ p.date {
   font-size: 1.4rem;
   cursor: pointer;
   box-shadow: 6px 6px 0 #000;
-
   transition:
     transform 0.15s cubic-bezier(.2,.9,.2,1),
     box-shadow 0.15s cubic-bezier(.2,.9,.2,1),
@@ -116,10 +109,8 @@ p.date {
   background: #f5f5f5;
 }
 
-/* =========================
-   TOC ITEMS (BRUTALISM)
-   each item contains the visible header box
-========================= */
+
+/* TOC item (daftar heading) */
 
 .toc-h1,
 .toc-h2,
@@ -135,7 +126,7 @@ p.date {
   user-select: none;
   box-shadow: 5px 5px 0 #000;
   overflow: hidden;
-  max-height: 200px;               
+  max-height: 200px;
   opacity: 1;
   transform-origin: top;
   transition:
@@ -144,9 +135,7 @@ p.date {
     transform 220ms cubic-bezier(.2,.9,.2,1);
 }
 
-/* =========================
-   HIERARCHY – visual cues
-========================= */
+/* Hirarki visual TOC */
 
 .toc-h1 {
   margin-left: 15px;
@@ -166,13 +155,19 @@ p.date {
   font-size: 0.9em;
 }
 
-/* small structural markers (optional) */
-.toc-h2::before { content: "└─ "; margin-right:6px; }
-.toc-h3::before { content: "└── "; margin-right:6px; }
+/* Penanda struktur di depan item TOC */
 
-/* =========================
-   Hover = tactile brutalism
-========================= */
+.toc-h2::before {
+  content: "└─ ";
+  margin-right: 6px;
+}
+
+.toc-h3::before {
+  content: "└── ";
+  margin-right: 6px;
+}
+
+/* Hover efek untuk TOC item */
 
 .toc-h1:hover,
 .toc-h2:hover,
@@ -180,17 +175,14 @@ p.date {
   transform: translate(3px, 3px);
   box-shadow: 2px 2px 0 #000;
   background: #f0f0f0;
-  transition: 
+  transition:
     max-height 320ms cubic-bezier(.2,.9,.2,1),
     opacity 220ms ease,
     transform 220ms cubic-bezier(.2,.9,.2,1);
 }
 
-/* =========================
-   COLLAPSED STATE (SMOOTH)
-========================= */
+/* State collapsed untuk item TOC yang disembunyikan */
 
-/* collapsed element -> visually removed but animated */
 .collapsed {
   max-height: 0 !important;
   opacity: 0;
@@ -199,24 +191,17 @@ p.date {
   margin-bottom: 0 !important;
   padding-top: 0;
   padding-bottom: 0;
-
   pointer-events: none;
 }
 
-
-/* optional brief spacing fix for compact collapsed groups */
-.collapsed + .collapsed {
-  margin-top: 0;
-}
-
-/* =========================
-   TOC CONTENT VISIBILITY
-========================= */
+/* Kelas utilitas untuk menyembunyikan elemen */
 
 .hidden {
   display: none;
 }
 
+
+/* Kontainer isi utama */
 
 .container1 {
   font-family: "JetBrains Mono", monospace;
@@ -224,8 +209,11 @@ p.date {
   padding: 20px;
   margin-bottom: 40px;
   box-shadow: 6px 6px 0 #000;
-  text-align: justify; line-height: 1.8;
+  text-align: justify;
+  line-height: 1.8;
 }
+
+/* Header blok di dalam konten */
 
 .header-container {
   font-weight: 700;
@@ -236,29 +224,38 @@ p.date {
   box-shadow: 4px 4px 0 #000;
 }
 
-.content-container h2{
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-.content-container{
+/* Kontainer untuk tiap bagian isi */
+
+.content-container {
   border: 2px solid #000;
   font-weight: 400;
   padding: 0 20px;
-  margin: 20px 0px;
+  margin: 20px 0;
 }
-.special-header{
+
+/* Judul di dalam content-container */
+
+.content-container h2 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Header khusus (highlight section penting) */
+
+.special-header {
   text-align: center;
   border: 4px solid #000;
   padding: 10px 20px;
-  margin: 30px 0px;
+  margin: 30px 0;
   box-shadow: 4px 4px 0 #000;
-}  
-  
-/*Daftar Pustaka*/
+}
+
+
+/* Daftar pustaka (section #refs) */
+
 #refs {
-  text-indent: -1.5em;
+  text-indent: -1.5em;   /* hanging indent */
   padding-left: 1.5em;
   line-height: 1.6;
   text-align: justify;
 }
-
