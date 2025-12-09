@@ -139,7 +139,7 @@ selection_sort <- function(arr) {
 :::
 
 :::{.content-container}
-:::{.speciual-header}
+:::{.special-header}
 ## Insertion Sort
 :::
 Insertion Sort bekerja dengan cara mengambil satu elemen dari bagian yang belum terurut, kemudian menyisipkannya pada posisi yang sesuai di dalam bagian array yang sudah terurut sehingga urutan tetap terjaga.
@@ -275,7 +275,7 @@ counting_sort <- function(arr) {
 :::
 
 :::{.container1}
-::::{.header-container}
+:::{.header-container}
 # Daftar Pustaka
 :::
 :::{#refs}

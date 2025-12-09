@@ -255,3 +255,4 @@ cat("Hasil Terurut:", hasil, "\n")
 ::: {#refs}
 Yang, C., Ning, X., Yu, D., Sun, H., Kang, G., & Wang, H. (2025). A divide-and-conquer strategy for integer programming problems. Electronic Research Archive, 33(6), 3950-3967. <https://doi.org/10.3934/era.2025175>
 :::
+:::
