@@ -14,35 +14,40 @@ htmltools::attachDependencies(
     version = "1.0.0",
     src = "../assets",
     script = "js/script.js",
-    stylesheet = "css/style.css"
+    stylesheet = c("css/style.css","font/font.css")
   )
 )
 ```
-
-**Algoritma dan Pemrograman**
+:::{.main-title}
+<div class="title-main"> Algorithm of Sorting </div>
+<div class="title-sub"> Pertemuan 10 </div>
+:::
 
 <nav id="custom-toc" aria-label="Daftar Isi">
-
 ::: {#toc-title}
-Daftar Isi
+ DAFTAR ISI
 :::
-
 ::: {#toc-content}
 :::
-
 </nav>
 
-# **Algorithm of Sorting**
-
-**Pertemuan 10**
-
+:::{.container1}
+:::{.header-container}
 # Pengertian
+:::
+:::{.content-container}
+Algoritma sorting adalah kumpulan langkah sistematis untuk menyusun atau mengurutkan sekumpulan data ke dalam urutan tertentu, misalnya:
 
-Algoritma sorting adalah kumpulan langkah sistematis untuk menyusun atau mengurutkan sekumpulan data ke dalam urutan tertentu, misalnya:\
-- dari terkecil ke terbesar (ascending) - dari terbesar ke terkecil (descending)
+- dari terkecil ke terbesar (ascending) 
+- dari terbesar ke terkecil (descending)
+:::
+:::
 
+:::{.container1}
+:::{.header-container}
 # Jenis Algoritma Sorting
-
+:::
+:::{.content-container}
 ## Comparison Sort
 
 Algoritma yang mengurutkan data dengan cara **membandingkan** pasangan elemen dan menentukan posisi elemen berdasarkan hasil perbandingan tersebut.\
@@ -62,7 +67,7 @@ Algortima yang termasuk dalam kategori ini antara lain:
 
 -   **Quick Sort**\
     Memilih elemen pivot, lalu membagi array berdasarkan elemen yang lebih kecil atau lebih besar dari pivot, dan mengulang proses ini secara rekursif.
-
+    
 ## Non-Comparison Sort
 
 Algoritma yang **tidak menggunakan perbandingan langsung** antar elemen. Algortima yang termasuk dalam kategori ini antara lain:  
@@ -71,11 +76,17 @@ Algoritma yang **tidak menggunakan perbandingan langsung** antar elemen. Algorti
     Mengurutkan angka berdasarkan digit per digit, mulai dari digit terkecil hingga digit terbesar.
 -   **Radix Sort**\
     Menggunakan array tambahan untuk menghitung frekuensi setiap elemen dan menempatkan elemen-elemen tersebut ke posisi yang tepat sesuai jumlahnya.
+:::
+:::
 
+:::{.container1}
+:::{.header-container}
 # Comparison Sort
-
+:::
+:::{.content-container}
+:::{.special-header}
 ## Bubble Sort
-
+:::
 Bubble Sort adalah algoritma sorting yang paling sederhana, dengan gagasan utama melakukan penyisiran berulang pada array sambil membandingkan pasangan elemen yang saling berdampingan dan menukarnya ketika urutannya tidak sesuai (misalnya elemen di kiri lebih besar daripada elemen di kanan).\
 Melalui mekanisme tersebut, elemen bernilai terbesar akan secara bertahap “menggelembung” ke arah posisi paling kanan pada akhir setiap iterasi hingga menempati posisi akhirnya.
 
@@ -95,9 +106,11 @@ bubble_sort <- function(arr) {
   return(arr)
 }
 ```
-
+:::
+:::{.content-container}
+:::{.special-header}
 ## Selection Sort
-
+:::
 Selection Sort bekerja dengan cara memecah array menjadi dua segmen, yaitu:
 
 -   bagian terurut (kiri)
@@ -123,9 +136,12 @@ selection_sort <- function(arr) {
   return(arr)
 }
 ```
+:::
 
+:::{.content-container}
+:::{.speciual-header}
 ## Insertion Sort
-
+:::
 Insertion Sort bekerja dengan cara mengambil satu elemen dari bagian yang belum terurut, kemudian menyisipkannya pada posisi yang sesuai di dalam bagian array yang sudah terurut sehingga urutan tetap terjaga.
 
 ```{r insertion_sort}
@@ -144,7 +160,12 @@ insertion_sort <- function(arr) {
 }
 
 ```
+:::
+
+:::{.content-container}
+:::{.special-header}
 ## Merge Sort
+:::
 
 Merge Sort menerapkan strategi **Divide and Conquer (D&C)** dengan cara pertama-tama memecah (Divide) array menjadi sub-array yang semakin kecil hingga tersisa bagian berukuran satu elemen, yang secara alami sudah terurut. Setelah itu, sub-array kecil tersebut digabungkan (Combine/Merge) kembali secara bertahap dengan cara menggabungkan dua bagian terurut menjadi satu array yang tetap terurut hingga seluruh elemen kembali menjadi satu array yang sudah tersusun rapi.
 
@@ -175,8 +196,12 @@ merge <- function(left, right) {
   return(result)
 }
 ```
+:::
 
+:::{.content-container}
+:::{.special-header}
 ## Quick Sort
+:::
 
 Quick Sort bekerja dengan memilih satu elemen sebagai **pivot**, kemudian membagi array ke dalam dua bagian, yaitu elemen-elemen di sebelah kiri yang bernilai lebih kecil dari pivot dan elemen-elemen di sebelah kanan yang bernilai lebih besar dari pivot. Setelah pemisahan ini, proses yang sama diterapkan kembali secara rekursif pada kedua bagian tersebut hingga seluruh array terurut.
 
@@ -192,11 +217,18 @@ quick_sort <- function(arr) {
   return(c(quick_sort(less), equal, quick_sort(greater)))
 }
 ```
+:::
+:::
 
+:::{.container1}
+:::{.header-container}
 # Non-Comparasion Sort
+:::
 
+:::{.content-container}
+:::{.special-header}
 ## Radix Sort
-
+:::
 Radix Sort mengurutkan angka dengan memproses setiap digit secara terpisah, dimulai dari digit paling rendah (least significant digit) hingga digit paling tinggi (most significant digit). Pada setiap tahap, algoritma menggunakan metode pengurutan stabil seperti Counting Sort untuk mengurutkan elemen berdasarkan digit yang sedang diproses, sehingga memastikan bahwa urutan relatif elemen dengan digit yang sama tetap terjaga.
 
 ```{r radix_sort}
@@ -216,8 +248,12 @@ radix_sort <- function(arr) {
 }
 
 ```
-## Counting Sort
+:::
 
+:::{.content-container}
+:::{.special-header}
+## Counting Sort
+:::
 Counting Sort (Sortir Hitung) adalah algoritma yang sangat efisienketika nilai data berada pada rentang (range) yang sudah diketahui dan relatif terbatas (misalnya hanya bilangan 0–9 atau 1–100). Algoritma ini bekerja dengan membuat sebuah array bantu (seperti “ember” atau tabel frekuensi) untuk menghitung berapa kali setiap nilai muncul, lalu menggunakan informasi frekuensi tersebut untuk menyusun kembali elemen-elemen ke dalam array keluaran dalam urutan yang terurut.
 
 ```{r counting_sort}
@@ -235,7 +271,14 @@ counting_sort <- function(arr) {
   return(output)
 }
 ```
+:::
+:::
 
-#Daftar Pustaka
-
+:::{.container1}
+::::{.header-container}
+# Daftar Pustaka
+:::
+:::{#refs}
 Cherukuri, N. S. (2021). A comprehensive study of various sorting algorithms. International Journal of Science and Research, 10(11), 278–282.
+:::
+:::
