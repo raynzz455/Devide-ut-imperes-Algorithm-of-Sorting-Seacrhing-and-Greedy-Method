@@ -1,0 +1,241 @@
+---
+title: "Algorithm of Sorting"
+author: "Raynaldi, Muhammad Taqi Husaini, Fahri Muhammad"
+date: "2025-12-04"
+output:
+  html_document:
+---
+
+```{r html-deps, echo=FALSE}
+htmltools::attachDependencies(
+  htmltools::tagList(),
+  htmltools::htmlDependency(
+    name = "custom-toc",
+    version = "1.0.0",
+    src = "../assets",
+    script = "js/script.js",
+    stylesheet = "css/style.css"
+  )
+)
+```
+
+**Algoritma dan Pemrograman**
+
+<nav id="custom-toc" aria-label="Daftar Isi">
+
+::: {#toc-title}
+Daftar Isi
+:::
+
+::: {#toc-content}
+:::
+
+</nav>
+
+# **Algorithm of Sorting**
+
+**Pertemuan 10**
+
+# Pengertian
+
+Algoritma sorting adalah kumpulan langkah sistematis untuk menyusun atau mengurutkan sekumpulan data ke dalam urutan tertentu, misalnya:\
+- dari terkecil ke terbesar (ascending) - dari terbesar ke terkecil (descending)
+
+# Jenis Algoritma Sorting
+
+## Comparison Sort
+
+Algoritma yang mengurutkan data dengan cara **membandingkan** pasangan elemen dan menentukan posisi elemen berdasarkan hasil perbandingan tersebut.\
+Algortima yang termasuk dalam kategori ini antara lain:
+
+-   **Bubble Sort**\
+    Membandingkan setiap elemen dengan elemen berikutnya, dan menukar posisinya jika urutannya salah. Proses ini diulang hingga semua elemen terurut.\
+
+-   **Selection Sort**\
+    Memilih elemen terkecil dari bagian tidak terurut, kemudian menempatkannya di posisi yang sesuai pada bagian terurut.\
+
+-   **Insertion Sort**\
+    Memasukkan setiap elemen ke posisi yang benar di bagian terurut dari array.\
+
+-   **Merge Sort**\
+    Membagi array menjadi dua bagian secara rekursif hingga bagian terkecil, kemudian menggabungkannya kembali dalam urutan yang benar.\
+
+-   **Quick Sort**\
+    Memilih elemen pivot, lalu membagi array berdasarkan elemen yang lebih kecil atau lebih besar dari pivot, dan mengulang proses ini secara rekursif.
+
+## Non-Comparison Sort
+
+Algoritma yang **tidak menggunakan perbandingan langsung** antar elemen. Algortima yang termasuk dalam kategori ini antara lain:  
+
+-   **Counting Sort**\
+    Mengurutkan angka berdasarkan digit per digit, mulai dari digit terkecil hingga digit terbesar.
+-   **Radix Sort**\
+    Menggunakan array tambahan untuk menghitung frekuensi setiap elemen dan menempatkan elemen-elemen tersebut ke posisi yang tepat sesuai jumlahnya.
+
+# Comparison Sort
+
+## Bubble Sort
+
+Bubble Sort adalah algoritma sorting yang paling sederhana, dengan gagasan utama melakukan penyisiran berulang pada array sambil membandingkan pasangan elemen yang saling berdampingan dan menukarnya ketika urutannya tidak sesuai (misalnya elemen di kiri lebih besar daripada elemen di kanan).\
+Melalui mekanisme tersebut, elemen bernilai terbesar akan secara bertahap “menggelembung” ke arah posisi paling kanan pada akhir setiap iterasi hingga menempati posisi akhirnya.
+
+```{r buble_sort}
+bubble_sort <- function(arr) {
+  n <- length(arr)
+  for (i in 1:(n-1)) {
+    for (j in 1:(n-i)) {
+      if (arr[j] > arr[j + 1]) {
+        # Tukar elemen
+        temp <- arr[j]
+        arr[j] <- arr[j + 1]
+        arr[j + 1] <- temp
+      }
+    }
+  }
+  return(arr)
+}
+```
+
+## Selection Sort
+
+Selection Sort bekerja dengan cara memecah array menjadi dua segmen, yaitu:
+
+-   bagian terurut (kiri)
+-   bagian tidak terurut (kanan)
+
+Pada setiap iterasi, algoritma mencari elemen dengan nilai terkecil dari bagian yang belum terurut, kemudian menukarnya ke posisi yang semestinya di ujung kanan bagian yang sudah terurut.
+
+```{r selection_sort}
+selection_sort <- function(arr) {
+  n <- length(arr)
+  for (i in 1:(n-1)) {
+    min_index <- i
+    for (j in (i+1):n) {
+      if (arr[j] < arr[min_index]) {
+        min_index <- j
+      }
+    }
+    # Tukar elemen
+    temp <- arr[i]
+    arr[i] <- arr[min_index]
+    arr[min_index] <- temp
+  }
+  return(arr)
+}
+```
+
+## Insertion Sort
+
+Insertion Sort bekerja dengan cara mengambil satu elemen dari bagian yang belum terurut, kemudian menyisipkannya pada posisi yang sesuai di dalam bagian array yang sudah terurut sehingga urutan tetap terjaga.
+
+```{r insertion_sort}
+insertion_sort <- function(arr) {
+  n <- length(arr)
+  for (i in 2:n) {
+    key <- arr[i]
+    j <- i - 1
+    while (j > 0 && arr[j] > key) {
+      arr[j + 1] <- arr[j]
+      j <- j - 1
+    }
+    arr[j + 1] <- key
+  }
+  return(arr)
+}
+
+```
+## Merge Sort
+
+Merge Sort menerapkan strategi **Divide and Conquer (D&C)** dengan cara pertama-tama memecah (Divide) array menjadi sub-array yang semakin kecil hingga tersisa bagian berukuran satu elemen, yang secara alami sudah terurut. Setelah itu, sub-array kecil tersebut digabungkan (Combine/Merge) kembali secara bertahap dengan cara menggabungkan dua bagian terurut menjadi satu array yang tetap terurut hingga seluruh elemen kembali menjadi satu array yang sudah tersusun rapi.
+
+```{r merge_sort}
+merge_sort <- function(arr) {
+  if (length(arr) <= 1) {
+    return(arr)
+  }
+  mid <- floor(length(arr) / 2)
+  left <- merge_sort(arr[1:mid])
+  right <- merge_sort(arr[(mid + 1):length(arr)])
+  return(merge(left, right))
+}
+merge <- function(left, right) {
+  result <- c()
+  i <- 1
+  j <- 1
+  while (i <= length(left) && j <= length(right)) {
+    if (left[i] <= right[j]) {
+      result <- c(result, left[i])
+      i <- i + 1
+    } else {
+      result <- c(result, right[j])
+      j <- j + 1
+    }
+  }
+  result <- c(result, left[i:length(left)], right[j:length(right)])
+  return(result)
+}
+```
+
+## Quick Sort
+
+Quick Sort bekerja dengan memilih satu elemen sebagai **pivot**, kemudian membagi array ke dalam dua bagian, yaitu elemen-elemen di sebelah kiri yang bernilai lebih kecil dari pivot dan elemen-elemen di sebelah kanan yang bernilai lebih besar dari pivot. Setelah pemisahan ini, proses yang sama diterapkan kembali secara rekursif pada kedua bagian tersebut hingga seluruh array terurut.
+
+```{r quick_sort}
+quick_sort <- function(arr) {
+  if (length(arr) <= 1) {
+    return(arr)
+  }
+  pivot <- arr[1]
+  less <- arr[arr < pivot]
+  equal <- arr[arr == pivot]
+  greater <- arr[arr > pivot]
+  return(c(quick_sort(less), equal, quick_sort(greater)))
+}
+```
+
+# Non-Comparasion Sort
+
+## Radix Sort
+
+Radix Sort mengurutkan angka dengan memproses setiap digit secara terpisah, dimulai dari digit paling rendah (least significant digit) hingga digit paling tinggi (most significant digit). Pada setiap tahap, algoritma menggunakan metode pengurutan stabil seperti Counting Sort untuk mengurutkan elemen berdasarkan digit yang sedang diproses, sehingga memastikan bahwa urutan relatif elemen dengan digit yang sama tetap terjaga.
+
+```{r radix_sort}
+radix_sort <- function(arr) {
+  max_val <- max(arr)
+  exp <- 1
+  while (max_val %/% exp > 0) {
+    buckets <- vector("list", 10)
+    for (x in arr) {
+      digit <- (x %/% exp) %% 10
+      buckets[[digit + 1]] <- c(buckets[[digit + 1]], x)
+    }
+    arr <- unlist(buckets)
+    exp <- exp * 10
+  }
+  return(arr)
+}
+
+```
+## Counting Sort
+
+Counting Sort (Sortir Hitung) adalah algoritma yang sangat efisienketika nilai data berada pada rentang (range) yang sudah diketahui dan relatif terbatas (misalnya hanya bilangan 0–9 atau 1–100). Algoritma ini bekerja dengan membuat sebuah array bantu (seperti “ember” atau tabel frekuensi) untuk menghitung berapa kali setiap nilai muncul, lalu menggunakan informasi frekuensi tersebut untuk menyusun kembali elemen-elemen ke dalam array keluaran dalam urutan yang terurut.
+
+```{r counting_sort}
+counting_sort <- function(arr) {
+  max_val <- max(arr)
+  count <- numeric(max_val + 1)
+  output <- numeric(length(arr))
+
+  for (x in arr) count[x + 1] <- count[x + 1] + 1
+  for (i in 2:length(count)) count[i] <- count[i] + count[i-1]
+  for (i in seq(length(arr), 1)) {
+    output[count[arr[i] + 1]] <- arr[i]
+    count[arr[i] + 1] <- count[arr[i] + 1] - 1
+  }
+  return(output)
+}
+```
+
+#Daftar Pustaka
+
+Cherukuri, N. S. (2021). A comprehensive study of various sorting algorithms. International Journal of Science and Research, 10(11), 278–282.
