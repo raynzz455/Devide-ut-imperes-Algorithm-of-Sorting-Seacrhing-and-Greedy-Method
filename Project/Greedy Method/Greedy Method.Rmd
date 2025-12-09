@@ -1,0 +1,141 @@
+---
+title: "Mini Project Algoritma dan Pemrograman"
+author: "Muhammad Taqi Husaini, Raynaldi, Fahri Muhammad"
+date: "2025-12-04"
+output: 
+  html_document:
+    css: style.css
+---
+
+# **Metode Greedy**
+
+## Pertemuan 12
+
+### **Definisi**
+
+Algoritma Greedy adalah metode pemecahan masalah yang mengikuti heuristik pemecahan masalah dengan membuat pilihan lokal yang optimal pada setiap tahap, dengan harapan bahwa pilihan-pilihan tersebut akan mengarah pada solusi global yang optimal. Sesuai namanya (Greedy = Tamak/Rakus), algoritma ini selalu ingin mengambil "keuntungan terbesar" yang ada di depan mata saat ini juga, tanpa mempedulikan konsekuensi jangka panjang atau langkah berikutnya.
+
+### **Analogi Greedy**
+
+Misalkan Anda adalah kasir yang harus memberikan kembalian Rp7.000 menggunakan koin/uang pecahan yang tersedia: Rp5.000, Rp2.000, Rp1.000, Rp500. **Langkah Greedy:** Anda akan selalu mengambil pecahan terbesar yang masih memungkinkan terlebih dahulu.
+
+-   Ambil Rp5.000 (Sisa Rp2.000).\
+-   Ambil Rp2.000 (Sisa 0).\
+-   Tidak mengambil 7 lembar Rp1.000 karena tidak efisien dan tidak optimal.
+
+### **1. Greedy : Optimal Storage On Tapes**
+
+Kita memiliki beberapa file dengan ukuran berbeda. File-file ini akan disimpan pada sebuah tape secara berurutan. Tujuannya adalah meminimalkan total retrieval time, yaitu waktu rata-rata untuk mengambil file.
+
+**Prinsip greedy untuk masalah ini adalah:**
+
+Urutkan file dari yang terkecil ke yang terbesar (Shortest Processing Time First). Semakin kecil file ditempatkan lebih awal maka semakin cepat diakses.
+
+**Langkah Metode Greedy optimal storage on tapes :**
+
+1.  Ambil semua ukuran file.
+
+2.  Urutkan secara ascending (dari kecil ke besar).
+
+3.  Hitung **cumulative sum (waktu sampai file itu selesai dibaca)**.
+
+4.  Hitung **total retrieval time = jumlah seluruh cumulative sum**.
+
+5.  Rata-rata waktu akses = total retrieval time / jumlah file.
+
+**Studi kasus :**
+
+Misal ada sebuah tempat print yg harus melayani 5 orang, dan 5 orang itu ingin print file yg jumlahnya berbeda\
+dari ke 5 itu jumlah file per orangnya adalah (20,10,5,35,15),
+
+-   tukang printer tersebut ingin melayani dengan rata rata waktu yg efisien
+
+-   maka tukang printer tersebut mengurutkannya menjadi (5,10,15,20,35)
+
+-   jadi orang yg ingin memprint file lebih sedikit akan didahulukan\
+
+**Implementasi dalam Rstudio**
+```{r}
+#Greedy  : optimal storage on tapes
+files <- data.frame(
+  Orang = c("A", "B", "C", "D", "E"),
+  Jumlah_file = c(20, 10, 5, 35, 15)
+)
+
+# Urutkan file berdasarkan ukuran (Smallest First)
+files_sorted <- files[order(files$Jumlah_file), ]
+
+# Hitung cumulative 
+files_sorted$CumulativeTime <- cumsum(files_sorted$Jumlah_file)
+
+# itung total dan rata-rata 
+total_wait_time <- sum(files_sorted$CumulativeTime)
+average_wait_time <- total_wait_time / nrow(files_sorted)
+
+cat("Urutan file yang dicetak (Smallest First):\n")
+print(files_sorted)
+
+cat("Cumulative per file:", files_sorted$CumulativeTime, "\n")
+cat("jumlah untuk semua file:", total_wait_time, "\n")
+cat("Rata-rata file:", average_wait_time, "\n")
+
+
+```
+
+### **2. Greedy : Knapsack Problem**
+
+**logika Greedy knapsack :**\
+selalu memilih barang dengan nilai (profit) terbesar terlebih dahulu tanpa mempertimbangkan rasio nilai terhadap berat. Langkah-langkahnya sebagai berikut:
+
+1.  Barang disusun ulang berdasarkan nilai tertinggi ke terendah.
+
+2.  Ambil barang pertama (nilai terbesar) jika masih muat ke dalam kapasitas tas.
+
+3.  Kurangi kapasitas yang tersisa.
+
+4.  Lanjutkan ke barang berikutnya, selama kapasitas masih cukup.
+
+5.  Proses berhenti ketika tidak ada barang lagi yang bisa dimasukkan.\
+    Dengan pendekatan ini, algoritma memastikan bahwa barang-barang bernilai tinggi diprioritaskan, meskipun belum tentu menghasilkan total nilai paling optimal seperti dynamic programming. Namun untuk kasus tertentu,
+
+**Implementasi dalam Rstudio**
+```{r}
+# Greedy : Knapsack Problem
+set.seed(123)
+items <- data.frame(
+  Barang = c("Laptop","Printer","Monitor","Scanner","Hard Drive"),
+  Berat  = c(5,10,7,3,2),
+  Nilai  = c(2000000,1500000,1800000,1200000,800000)
+)
+capacity <- 50
+
+# FUNGSI GREEDY BY PROFIT
+greedy_by_profit <- function(items, capacity) {
+  items <- items[order(-items$Nilai), ]
+  
+  current_weight <- 0
+  current_value  <- 0
+  selected_items <- character(0)
+  
+  for (i in seq_len(nrow(items))) {
+    if (current_weight + items$Berat[i] <= capacity) {
+      current_weight <- current_weight + items$Berat[i]
+      current_value  <- current_value + items$Nilai[i]
+      selected_items <- c(selected_items, items$Barang[i])
+    }
+  }
+  
+  return(list(selected = selected_items,
+              weight   = current_weight,
+              value    = current_value))
+}
+
+# PANGGIL FUNGSI
+res_profit <- greedy_by_profit(items, capacity)
+
+# CETAK HASIL
+cat("=== GREEDY BY PROFIT ===\n")
+cat("Barang dipilih: ", paste(res_profit$selected, collapse=", "), "\n")
+cat("Total berat: ", res_profit$weight, "kg\n")
+cat("Total nilai: Rp", format(res_profit$value, big.mark="."), "\n")
+```
