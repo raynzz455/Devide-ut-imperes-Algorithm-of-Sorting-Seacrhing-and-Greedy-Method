@@ -1,12 +1,93 @@
+@import url(../font/font.css);
+:root {
+  --content-width: 1200px;
+}
+
+#header,
+.main-title,
+.container,
+.header-container {
+  box-sizing: border-box;
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*Header*/
+#header {
+  font-family: "JetBrains Mono", monospace;
+  border: 4px solid #000;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 6px 6px 0 #000;
+}
+
+h1.title {
+  font-weight: 800;
+  margin-bottom: 0.2em;
+}
+
+p.subtitle {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-top: 0;
+}
+
+p.author,
+p.date {
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* =========================
+   MAIN TITLE CONTAINER
+========================= */
+
+.main-title {
+  border: 4px solid #000;
+  padding: 24px 20px;
+  margin: 30px auto;
+
+  text-align: center;
+  background: #fff;
+  box-shadow: 6px 6px 0 #000;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* =========================
+   MAIN TITLE TEXT
+========================= */
+
+.title-main {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+/* =========================
+   SUB TITLE
+========================= */
+
+.title-sub {
+  font-size: 1.5rem;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+
+
+
 /* =========================
    TOC CONTAINER
 ========================= */
 
 #custom-toc {
-  width: 260px;
+  width: 200px;
   font-family: monospace;
   box-sizing: border-box;
-  background: #fff;
+  margin-bottom: 40px;
 }
 
 /* =========================
@@ -15,12 +96,12 @@
 
 #toc-title {
   border: 4px solid #000;
-  padding: 10px;
-  margin-bottom: 14px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-family: "JetBrains Mono", monospace;
   font-weight: bold;
+  font-size: 1.4rem;
   cursor: pointer;
-  background: #fff;
-
   box-shadow: 6px 6px 0 #000;
 
   transition:
@@ -48,16 +129,13 @@
   border: 3px solid #000;
   background: #fff;
   margin-bottom: 10px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 10px 12px;
   cursor: pointer;
   user-select: none;
-
   box-shadow: 5px 5px 0 #000;
-
-  /* animation targets: max-height, opacity, transform */
   overflow: hidden;
-  max-height: 200px;               /* generous max for expanded state */
+  max-height: 200px;               
   opacity: 1;
   transform-origin: top;
   transition:
@@ -71,19 +149,19 @@
 ========================= */
 
 .toc-h1 {
-  margin-left: 10px;
+  margin-left: 15px;
   font-weight: 700;
   font-size: 1rem;
 }
 
 .toc-h2 {
-  margin-left: 18px;
+  margin-left: 30px;
   width: calc(100% - 14px);
   font-size: 0.95em;
 }
 
 .toc-h3 {
-  margin-left: 22px;
+  margin-left: 45px;
   width: calc(100% - 28px);
   font-size: 0.9em;
 }
@@ -99,14 +177,17 @@
 .toc-h1:hover,
 .toc-h2:hover,
 .toc-h3:hover {
-  transform: translate(4px, 4px);
-  box-shadow: 1px 1px 0 #000;
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #000;
   background: #f0f0f0;
+  transition: 
+    max-height 320ms cubic-bezier(.2,.9,.2,1),
+    opacity 220ms ease,
+    transform 220ms cubic-bezier(.2,.9,.2,1);
 }
 
 /* =========================
    COLLAPSED STATE (SMOOTH)
-   - keep borders, but hide content using max-height/opacity/transform
 ========================= */
 
 /* collapsed element -> visually removed but animated */
@@ -135,3 +216,49 @@
 .hidden {
   display: none;
 }
+
+
+.container1 {
+  font-family: "JetBrains Mono", monospace;
+  border: 4px solid #000;
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: 6px 6px 0 #000;
+  text-align: justify; line-height: 1.8;
+}
+
+.header-container {
+  font-weight: 700;
+  text-align: center;
+  border: 4px solid #000;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.content-container h2{
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.content-container{
+  border: 2px solid #000;
+  font-weight: 400;
+  padding: 0 20px;
+  margin: 20px 0px;
+}
+.special-header{
+  text-align: center;
+  border: 4px solid #000;
+  padding: 10px 20px;
+  margin: 30px 0px;
+  box-shadow: 4px 4px 0 #000;
+}  
+  
+/*Daftar Pustaka*/
+#refs {
+  text-indent: -1.5em;
+  padding-left: 1.5em;
+  line-height: 1.6;
+  text-align: justify;
+}
+
