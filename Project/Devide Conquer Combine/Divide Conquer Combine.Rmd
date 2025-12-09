@@ -241,8 +241,8 @@ cat("Hasil Terurut:", hasil, "\n")
          |    |         |      |       → right = 2
          |    |         |      → left = 3
          |    |         → n = 5
-         |    → %d (integer)
-         → %d (integer)
+         |    → %d (numeric)
+         → %d (numeric)
 </code></pre>
 
 :::
