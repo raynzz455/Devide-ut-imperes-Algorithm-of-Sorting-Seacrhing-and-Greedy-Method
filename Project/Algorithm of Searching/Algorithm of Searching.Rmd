@@ -1,0 +1,571 @@
+---
+title: "Mini Project Kelompok 10"
+author: "Raynaldi, Muhammad Taqi Husaini, Fahri Muhammad"
+date: "2025-12-04"
+output:
+  html_document:
+---
+
+```{r html-deps, echo=FALSE}
+htmltools::attachDependencies(
+  htmltools::tagList(),
+  htmltools::htmlDependency(
+    name = "custom-toc",
+    version = "1.0.0",
+    src = "../assets",
+    script = "js/script.js",
+    stylesheet = c("css/style.css","font/font.css")
+  )
+)
+```
+
+::::: main-title
+::: title-main
+Metode Searching
+:::
+
+::: title-sub
+Pertemuan 11
+:::
+:::::
+
+<nav id="custom-toc" aria-label="Daftar Isi">
+
+::: {#toc-title}
+DAFTAR ISI
+:::
+
+::: {#toc-content}
+:::
+
+</nav>
+
+::::: container1
+::: header-container
+# Pembagian
+:::
+
+::: content-container
+## Unsorted search
+
+Algoritma yang mencari data tanpa memerlukan data dalam kondisi terurut. Algoritma ini memeriksa data satu per satu.
+
+## Sorted search
+
+Algoritma yang memanfaatkan struktur data yang sudah terurut untuk menemukan data dengan jauh lebih efisien, seringkali dengan membuang sebagian besar data di setiap langkah.
+:::
+:::::
+
+:::::::::::: container1
+::: header-container
+# Unsorted search
+:::
+
+<p style="margin-bottom: 20px;">
+
+ilustrasi kasus untuk Unsorted search -\> (15,22,55,21,32,43,12), cari 43\
+dan pencarian dilakukan dari data yang tidak terurut
+
+</p>
+
+:::: content-container
+::: special-header
+## 1. Sequential search
+:::
+
+### Pengertian
+
+**Sequential search** adalah metode mencari elemen dengan memeriksa setiap data secara berurutan, satu per satu, dari awal hingga akhir.
+
+### Contoh
+
+Vektor[7,5,1,9,3] (n = 3)\
+target dicari = 1
+
+Langkah-langkah iterasi\
+indeks = 1: cek vektor[1]. Apakah 7 == 1? jika tidak maka lanjut.\
+indeks = 2: cek vektor[2]. Apakah 7 == 2? jika tidak maka lanjut.\
+indeks = 3: cek vektor[3]. Apakah 7 == 3? Ya.\
+Ditemukan di indeks 3. Proses pencarian berhenti
+
+**Implementasi dalam R studio**\
+
+```{r}
+# 1. SEQUENTIAL SEARCH
+sequential_search <- function(vec, target){
+  comparisons <- 0
+  
+  for(i in 1:length(vec)){
+    comparisons <- comparisons + 1
+    cat("Membandingkan", target, "dengan indeks", i, "=", vec[i], "\n")
+    
+    if(vec[i] == target){
+      cat("Sequential Search: ditemukan di indeks", i, "\n")
+      cat("Jumlah perbandingan:", comparisons, "\n\n")
+      return(i)
+    }
+  }
+  
+  cat("Sequential Search: tidak ditemukan\n")
+  cat("Jumlah perbandingan:", comparisons, "\n\n")
+  return(NA)
+}
+
+vec1 <- c(7, 5, 1, 9, 3)
+target1 <- 1
+sequential_search(vec1, target1)
+
+
+```
+::::
+
+:::: content-container
+::: special-header
+## 2. Hash Table Search
+:::
+
+### Pengertian
+
+**Hash Table Search** adalah metode pencarian menggunakan fungsi hash untuk menghitung indeks (posisi) data secara langsung, memungkinkan pencarian instan tanpa perbandingan.
+
+### Contoh 1
+
+**Pencarian ideal/tanpa tabrakan** vektor[7,5,1,9,3] Fungsi Hash (Contoh): Gunakan fungsi sederhana indeks = (nilai % 5) + 1. (Modulo 5, lalu +1 agar 1-based).
+
+Proses Membangun Tabel Hash (Setup):\
+7: (7 % 5) + 1 = 2 + 1 = 3. Simpan 7 di bucket [3].\
+5: (5 % 5) + 1 = 0 + 1 = 1. Simpan 5 di bucket [1].\
+1: (1 % 5) + 1 = 1 + 1 = 2. Simpan 1 di bucket [2].\
+9: (9 % 5) + 1 = 4 + 1 = 5. Simpan 9 di bucket [5].\
+3: (3 % 5) + 1 = 3 + 1 = 4. Simpan 3 di bucket [4].
+
+Tabel Hash Final: [ (1): [5], (2): [1], (3): [7], (4): [3], (5): [9] ]
+
+Target dicari : 9
+
+Iterasi Pencarian: Hitung hash dari Target 9: indeks = (9 % 5) + 1 = 5. Lompat langsung ke bucket indeks 5. Periksa isi bucket [5]. Ditemukan 9.
+
+DITEMUKAN. (Pencarian selesai dalam 1 langkah).
+
+**Implementasi dalam R studio**\
+
+```{r}
+# Hash tabel search
+hash_search <- function(vec, target){
+  size <- length(vec)
+  table <- vector("list", size)
+  
+  cat("Membangun hash table...\n")
+  for(v in vec){
+    idx <- (v %% size) + 1
+    table[[idx]] <- c(table[[idx]], v)
+    cat("Memasukkan", v, "ke bucket", idx, "\n")
+  }
+  
+  idx_t <- (target %% size) + 1
+  cat("\nTarget berada di bucket", idx_t, "\n")
+  cat("Isi bucket:", table[[idx_t]], "\n")
+  
+  if(target %in% table[[idx_t]]){
+    cat("Hash Search: ditemukan di bucket", idx_t, "\n\n")
+    return(idx_t)
+  } else {
+    cat("Hash Search: tidak ditemukan\n\n")
+    return(NA)
+  }
+}
+vec2 <- c(7, 5, 1, 9, 3)
+target2 <- 9
+hash_search(vec2, target2)
+```
+
+### Contoh 2
+
+**Pencarian dengan tabrakan(Collision)** vektor[7,5,1,9,3,14]
+
+Fungsi Hash: indeks = (nilai % 5) + 1
+
+Proses Membangun Tabel Hash:
+
+... (Sama seperti di atas)
+
+14: (14 % 5) + 1 = 4 + 1 = 5.
+
+Bucket [5] sudah berisi 9. Kita tambahkan 14 ke bucket yang sama (disebut chaining).
+
+Tabel Hash Final: [ (1): [5], (2): [1], (3): [7], (4): [3], (5): [9, 14] ]
+
+Target Dicari: 14
+
+Iterasi Pencarian: Hitung hash dari Target 14: indeks = (14 % 5) + 1 = 5.
+
+Lompat langsung ke bucket indeks 5.
+
+Isi bucket [5] adalah [9, 14]. Kita lakukan Sequential Search di dalam bucket ini.
+
+Cek elemen 1 di bucket: Apakah 9 == 14? Tidak.
+
+Cek elemen 2 di bucket: Apakah 14 == 14? Ya.
+
+DITEMUKAN.
+
+**Implementasi dalam R studio**\
+
+```{r}
+# hash table search
+vec1 <- c(7, 5, 1, 9, 3)
+target1 <- 1
+sequential_search(vec1, target1)
+
+hash_search <- function(vec, target){
+  mod_value <- 5
+  table <- vector("list", mod_value)
+  
+  cat("Membangun hash table (mod 5)...\n")
+  for(v in vec){
+    idx <- (v %% mod_value) + 1
+    table[[idx]] <- c(table[[idx]], v)
+    cat("Memasukkan", v, "ke bucket", idx, "\n")
+  }
+  
+  idx_t <- (target %% mod_value) + 1
+  cat("\nTarget berada di bucket", idx_t, "\n")
+  cat("Isi bucket:", table[[idx_t]], "\n")
+  
+  if(target %in% table[[idx_t]]){
+    cat("Hash Search: ditemukan di bucket", idx_t, "\n\n")
+    return(idx_t)
+  } else {
+    cat("Hash Search: tidak ditemukan\n\n")
+    return(NA)
+  }
+}
+vec2 <- c(7, 5, 1, 9, 3, 14)
+target2 <- 14
+hash_search(vec2, target2)
+```
+::::
+
+:::: content-container
+::: special-header
+## 3. Binary Search Tree (BST) Search
+:::
+
+### Pengertian
+
+**Binary Search Tree** adalah metode pencarian data dengan menelusuri struktur pohon, bergerak ke cabang kiri (nilai lebih kecil) atau kanan (nilai lebih besar) secara rekursif.
+
+### Contoh
+
+Vektor[8, 10, 3, 14, 6, 1, 7, 4]\
+Target dicari : 7
+
+Iterasi Pencarian (Menelusuri Jalur):  
+1.Mulai dari Akar (Root). Nilai 8.  
+2.Bandingkan: Target (7) < 8? Ya. Pindah KIRI ke simpul 3.  
+3.Bandingkan: Target (7) > 3? Ya. Pindah KANAN ke simpul 6.  
+4.Bandingkan: Target (7) > 6? Ya. Pindah KANAN ke simpul 7.  
+5.Bandingkan: Target (7) == 7? Ya.  
+6.DITEMUKAN.  
+
+**Implementasi di R studio**\
+
+```{r}
+# BST search
+node <- function(val, left=NULL, right=NULL){
+  list(val=val, left=left, right=right)
+}
+
+insert_bst <- function(root, val){
+  if(is.null(root)) return(node(val))
+  if(val < root$val) root$left <- insert_bst(root$left, val)
+  else root$right <- insert_bst(root$right, val)
+  return(root)
+}
+
+search_bst <- function(root, target){
+  if(is.null(root)){
+    cat("Node kosong → tidak ditemukan\n")
+    return(NA)
+  }
+  
+  cat("Mengunjungi node:", root$val, "\n")
+  
+  if(root$val == target){
+    cat("BST Search: ditemukan!\n\n")
+    return(TRUE)
+  }
+  
+  if(target < root$val){
+    cat("Menuju subtree kiri...\n")
+    return(search_bst(root$left, target))
+  } else {
+    cat("Menuju subtree kanan...\n")
+    return(search_bst(root$right, target))
+  }
+}
+
+vals <- c(8, 10, 3, 14, 6, 1, 7, 4)
+root <- NULL
+for(v in vals) root <- insert_bst(root, v)
+
+target3 <- 7
+search_bst(root, target3)
+```
+::::
+::::::::::::
+
+:::::::::::: container1
+::: header-container
+# Sorted search
+:::
+:::: content-container
+::: special-header
+## 1. Binary Search
+:::
+### Pengertian
+
+**Binary Search** adalah metode pencarian dengan cara membandingkan nilai target dengan elemen di posisi tengah array, lalu menentukan apakah pencarian dilanjutkan ke bagian kiri atau kanan berdasarkan hasil perbandingan tersebut. Proses ini berulang dengan terus membuang setengah ruang pencarian pada setiap langkah hingga elemen ditemukan atau tidak ada lagi bagian yang tersisa.
+
+### Contoh
+
+Vektor Awal (HARUS TERURUT):  
+[2, 3, 5, 6, 8, 9, 11, 12, 14] (n = 9)  
+
+Misalkan seorang mahasiswa ingin mencari **nomor loker 9** di deretan loker yang sudah disusun berdasarkan nomor terkecil hingga terbesar.\  
+Target Dicari: 9\ 
+Gunakan tiga penunjuk (pointer): `kiri`, `kanan`, dan `tengah`.
+
+**Iterasi 1**
+
+kiri = 1, kanan = 9  
+tengah = floor((1 + 9) / 2) = 5  
+Cek vektor[tengah] → vektor[5] adalah 8  
+Perbandingan: Target (9) > 8 → target pasti ada di kanan  
+Atur ulang batas: kiri = tengah + 1 = 6  
+Ruang Pencarian Baru: [9, 11, 12, 14] (indeks 6 s/d 9)
+
+**Iterasi 2**
+
+kiri = 6, kanan = 9  
+tengah = floor((6 + 9) / 2) = 7  
+Cek vektor[tengah] → vektor[7] adalah 11  
+Perbandingan: Target (9) < 11 → target pasti ada di kiri  
+Atur ulang batas: kanan = tengah - 1 = 6  
+Ruang Pencarian Baru: [9] (indeks 6 s/d 6)
+
+**Iterasi 3**
+
+kiri = 6, kanan = 6  
+tengah = floor((6 + 6) / 2) = 6  
+Cek vektor[tengah] → vektor[6] adalah 9  
+Perbandingan: Target (9) == 9  
+DITEMUKAN di indeks 6. Proses pencarian berhenti.
+
+**implementasi di R studio**
+
+```{r}
+binary_search <- function(vec, target){
+  left <- 1
+  right <- length(vec)
+  
+  while(left <= right){
+    mid <- floor((left + right)/2)
+    if(vec[mid] == target) return(paste("Binary Search: ditemukan di indeks", mid))
+    else if(target < vec[mid]) right <- mid - 1
+    else left <- mid + 1
+  }
+  
+  return("Binary Search: tidak ditemukan")
+}
+
+result <- c(2, 3, 5, 6, 8, 9, 11, 12, 14)
+binary_search(result, 9)
+```
+::::
+
+:::: content-container
+::: special-header
+## 2. Interpolation Search
+:::
+
+### Pengertian
+
+**Interpolation Search** adalah metode pencarian dengan cara memperkirakan posisi elemen yang dicari berdasarkan **nilai data**, bukan sekadar membelah array tepat di tengah. Metode pencarian ini menggunakan rumus interpolasi untuk menebak lokasi indeks yang kemungkinan besar berisi nilai target, dengan asumsi bahwa data terdistribusi relatif seragam, sehingga pencarian dapat dilakukan lebih cepat dibandingkan sekadar pembagian tengah berulang.
+
+## Contoh
+
+**Contoh 1: Pencarian Ideal (Data Seragam)**  
+
+Vektor Awal:  
+[5, 10, 15, 20, 25, 30, 35, 40, 45, 50] (n = 10)  
+
+Target Dicari: 45  
+
+Iterasi 1:  
+L = 1 (nilai 5), R = 10 (nilai 50).  
+
+Formula (1-based):  
+pos = L + floor( ((Target - V[L]) * (R - L)) / (V[R] - V[L]) )  
+
+pos = 1 + floor( ((45 - 5) * (10 - 1)) / (50 - 5) )  
+pos = 1 + floor( (40 * 9) / 45 )  
+pos = 1 + floor( 360 / 45 )  
+pos = 1 + 8 = 9.  
+
+Cek vektor[pos] → vektor[9] adalah 45.  
+DITEMUKAN di **indeks 9**. (Hanya 1 iterasi, karena data seragam dan tebakan posisi sangat dekat dengan nilai sebenarnya.)  
+
+**Contoh 2: Pencarian Kasus Buruk (Data Tidak Seragam)**  
+
+Vektor Awal:  
+[1, 2, 4, 8, 16, 100] (n = 6)  
+
+Target Dicari: 8  
+
+Iterasi 1:  
+L = 1 (nilai 1), R = 6 (nilai 100).  
+
+pos = 1 + floor( ((8 - 1) * (6 - 1)) / (100 - 1) )  
+pos = 1 + floor( (7 * 5) / 99 )  
+pos = 1 + floor( 35 / 99 )  
+pos = 1 + 0 = 1.  
+
+Cek vektor[1] (nilai 1).  
+Target (8) > 1.  
+Ruang pencarian baru: L = pos + 1 = 2, R tetap 6.  
+
+Iterasi 2:  
+L = 2 (nilai 2), R = 6 (nilai 100).  
+
+pos = 2 + floor( ((8 - 2) * (6 - 2)) / (100 - 2) )  
+pos = 2 + floor( (6 * 4) / 98 )  
+pos = 2 + floor( 24 / 98 )  
+pos = 2 + 0 = 2.  
+
+Cek vektor[2] (nilai 2).  
+Target (8) > 2.  
+Ruang pencarian baru: L = pos + 1 = 3, R tetap 6.  
+
+Iterasi 3:  
+L = 3 (nilai 4), R = 6 (nilai 100).  
+
+pos = 3 + floor( ((8 - 4) * (6 - 3)) / (100 - 4) )  
+pos = 3 + floor( (4 * 3) / 96 )  
+pos = 3 + floor( 12 / 96 )  
+pos = 3 + 0 = 3.  
+
+Cek vektor[3] (nilai 4).  
+Target (8) > 4.  
+Ruang pencarian baru: L = pos + 1 = 4, R tetap 6.  
+
+Iterasi 4:  
+L = 4 (nilai 8), R = 6 (nilai 100).  
+
+pos = 4 + floor( ((8 - 8) * (6 - 4)) / (100 - 8) )  
+pos = 4 + floor( 0 / 92 )  
+pos = 4 + 0 = 4.  
+
+Cek vektor[4] (nilai 8).  
+DITEMUKAN di **indeks 4.**  
+
+**Implementasi di R studio**\
+```{r}
+interpolation_search <- function(vec, target){
+  L <- 1
+  R <- length(vec)
+  
+  while(L <= R && target >= vec[L] && target <= vec[R]){
+    pos <- L + floor((target - vec[L]) * (R - L) / (vec[R] - vec[L]))
+    
+    if(vec[pos] == target) return(paste("Interpolation Search: ditemukan di indeks", pos))
+    if(vec[pos] < target) L <- pos + 1
+    else R <- pos - 1
+  }
+  
+  return("Interpolation Search: tidak ditemukan")
+}
+
+vec_seragam <- c(5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+interpolation_search(vec_seragam, 45)
+vec_tidak_seragam <- c(1, 2, 4, 8, 16, 100)
+interpolation_search(vec_tidak_seragam, 8)
+```
+::::
+
+:::: content-container
+::: special-header
+## 3. Jump Search
+:::
+
+### Pengertian
+
+**Jump Search** adalah metode pencarian yang bekerja dengan cara “melompat” maju dalam langkah (blok) berukuran tetap untuk menemukan rentang di mana target kemungkinan berada. Setelah blok yang relevan teridentifikasi, algoritma kemudian melakukan pencarian berurutan (linear search) di dalam blok tersebut hingga elemen ditemukan atau dipastikan tidak ada.
+
+### Contoh
+
+Jump Search  
+
+Contoh 1: Target Ditemukan  
+
+Vektor Awal:  
+[2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32] (n = 16)  
+
+Target Dicari: 26  
+
+Setup:  
+Ukuran lompatan m = sqrt(16) = 4.  
+
+Iterasi 1 (Lompatan):  
+Cek indeks 1 * 4 = 4.  
+vektor[4] adalah 8.  
+Target (26) > 8. Lanjut lompat.  
+
+Iterasi 2 (Lompatan):  
+Cek indeks 2 * 4 = 8.  
+vektor[8] adalah 16.  
+Target (26) > 16. Lanjut lompat.  
+
+Iterasi 3 (Lompatan):  
+Cek indeks 3 * 4 = 12.  
+vektor[12] adalah 24.  
+Target (26) > 24. Lanjut lompat.  
+
+Iterasi 4 (Lompatan):  
+Cek indeks 4 * 4 = 16.  
+vektor[16] adalah 32.  
+Target (26) < 32. STOP.  
+Target, jika ada, pasti berada di antara indeks 12 (lompatan sebelumnya) dan indeks 16.  
+
+Iterasi 5 (Sequential Search di blok terakhir):  
+Mulai pencarian berurutan dari indeks 12 + 1 = 13.  
+
+Cek vektor[13]: 26 == 26? Ya.  
+DITEMUKAN di indeks 13.
+
+**Implementasi di R studio**\
+```{r}
+jump_search <- function(vec, target){
+  n <- length(vec)
+  step <- floor(sqrt(n))
+  prev <- 1
+  
+  while(prev <= n && vec[min(step, n)] < target){
+    prev <- step + 1
+    step <- step + floor(sqrt(n))
+  }
+  
+  for(i in prev:min(step, n)){
+    if(vec[i] == target) return(paste("Jump Search: ditemukan di indeks", i))
+  }
+  
+  return("Jump Search: tidak ditemukan")
+}
+
+vec_jump <- c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32)
+jump_search(vec_jump, 26)
+```
+
+::::
+:::::::::::: 
+
