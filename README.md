@@ -47,10 +47,10 @@ Devide-ut-imperes, Algorithm-of-Sorting-Seacrhing-and-Greedy-Method.Proj
 2. Devide-ut-imperes, Algorithm-of-Sorting-Seacrhing-and-Greedy-Method.Proj
 3. Buka Folder **Project**
 4. Buka Folder sesuai materi Logika Pemrograman
-5. :warning: Jika ingin menjalankan tekan Ctrl + Shift + K
-6. Terdapat Tombol navigasi **Daftar Isi** untuk rmd\
-- Divide Conquer Combine
-- Algorithm of Sorting
-- Algorithm of Searching 
+5. :warning: Jika ingin menjalankan tekan Ctrl + Shift + K untuk melakukan render pada RMarkdown
+6. Setiap Rmd berikut memiliki tombol navigasi **Daftar Isi**:
+   - **Divide Conquer Combine**
+   - **Algorithm of Sorting**
+   - **Algorithm of Searching**
 
 :warning: Greedy Method memiliki css atau style sendiri :warning:
