@@ -5,7 +5,6 @@ date: "2025-12-04"
 output:
   html_document:
 ---
-
 ```{r html-deps, echo=FALSE}
 htmltools::attachDependencies(
   htmltools::tagList(),
@@ -14,9 +13,10 @@ htmltools::attachDependencies(
     version = "1.0.0",
     src = "../assets",
     script = "js/script.js",
-    stylesheet = c("css/style.css","font/font.css")
+    stylesheet = c("css/style.css", "font/font.css")
   )
 )
+
 ```
 
 ::::: main-title

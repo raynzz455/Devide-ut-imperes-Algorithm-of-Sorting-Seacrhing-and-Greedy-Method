@@ -13,7 +13,7 @@
 
 <meta name="date" content="2025-12-04" />
 
-<title>Algorithm of Sorting</title>
+<title>Mini Project Kelompok 10</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -633,28 +633,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-
-div.csl-bib-body { }
-div.csl-entry {
-clear: both;
-}
-.hanging div.csl-entry {
-margin-left:2em;
-text-indent:-2em;
-}
-div.csl-left-margin {
-min-width:2em;
-float:left;
-}
-div.csl-right-inline {
-margin-left:2em;
-padding-left:1em;
-}
-div.csl-indent {
-margin-left: 2em;
-}
-</style>
 
 
 
@@ -752,7 +730,7 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Algorithm of Sorting</h1>
+<h1 class="title toc-ignore">Mini Project Kelompok 10</h1>
 <h4 class="author">Raynaldi, Muhammad Taqi Husaini, Fahri Muhammad</h4>
 <h4 class="date">2025-12-04</h4>
 
@@ -761,10 +739,10 @@ display: none;
 
 <div class="main-title">
 <div class="title-main">
-Algorithm of Sorting
+<p>Metode Searching</p>
 </div>
 <div class="title-sub">
-Pertemuan 10
+<p>Pertemuan 11</p>
 </div>
 </div>
 <nav id="custom-toc" aria-label="Daftar Isi">
@@ -776,276 +754,530 @@ Pertemuan 10
 </div>
 </nav>
 <div class="container1">
-<div id="pengertian" class="section level1 header-container">
-<h1>Pengertian</h1>
+<div id="pembagian" class="section level1 header-container">
+<h1>Pembagian</h1>
 </div>
 <div class="content-container">
-<p>Algoritma sorting adalah kumpulan langkah sistematis untuk menyusun
-atau mengurutkan sekumpulan data ke dalam urutan tertentu, misalnya:</p>
-<ul>
-<li>dari terkecil ke terbesar (ascending)</li>
-<li>dari terbesar ke terkecil (descending)</li>
-</ul>
+<div id="unsorted-search" class="section level2">
+<h2>Unsorted search</h2>
+<p>Algoritma yang mencari data tanpa memerlukan data dalam kondisi
+terurut. Algoritma ini memeriksa data satu per satu.</p>
 </div>
-</div>
-<div class="container1">
-<div id="jenis-algoritma-sorting" class="section level1 header-container">
-<h1>Jenis Algoritma Sorting</h1>
-</div>
-<div class="content-container">
-<div id="comparison-sort" class="section level2">
-<h2>Comparison Sort</h2>
-<p>Algoritma yang mengurutkan data dengan cara
-<strong>membandingkan</strong> pasangan elemen dan menentukan posisi
-elemen berdasarkan hasil perbandingan tersebut.<br />
-Algortima yang termasuk dalam kategori ini antara lain:</p>
-<ul>
-<li><p><strong>Bubble Sort</strong><br />
-Membandingkan setiap elemen dengan elemen berikutnya, dan menukar
-posisinya jika urutannya salah. Proses ini diulang hingga semua elemen
-terurut.<br />
-</p></li>
-<li><p><strong>Selection Sort</strong><br />
-Memilih elemen terkecil dari bagian tidak terurut, kemudian
-menempatkannya di posisi yang sesuai pada bagian terurut.<br />
-</p></li>
-<li><p><strong>Insertion Sort</strong><br />
-Memasukkan setiap elemen ke posisi yang benar di bagian terurut dari
-array.<br />
-</p></li>
-<li><p><strong>Merge Sort</strong><br />
-Membagi array menjadi dua bagian secara rekursif hingga bagian terkecil,
-kemudian menggabungkannya kembali dalam urutan yang benar.<br />
-</p></li>
-<li><p><strong>Quick Sort</strong><br />
-Memilih elemen pivot, lalu membagi array berdasarkan elemen yang lebih
-kecil atau lebih besar dari pivot, dan mengulang proses ini secara
-rekursif.</p></li>
-</ul>
-</div>
-<div id="non-comparison-sort" class="section level2">
-<h2>Non-Comparison Sort</h2>
-<p>Algoritma yang <strong>tidak menggunakan perbandingan
-langsung</strong> antar elemen. Algortima yang termasuk dalam kategori
-ini antara lain:</p>
-<ul>
-<li><strong>Counting Sort</strong><br />
-Mengurutkan angka berdasarkan digit per digit, mulai dari digit terkecil
-hingga digit terbesar.</li>
-<li><strong>Radix Sort</strong><br />
-Menggunakan array tambahan untuk menghitung frekuensi setiap elemen dan
-menempatkan elemen-elemen tersebut ke posisi yang tepat sesuai
-jumlahnya.</li>
-</ul>
+<div id="sorted-search" class="section level2">
+<h2>Sorted search</h2>
+<p>Algoritma yang memanfaatkan struktur data yang sudah terurut untuk
+menemukan data dengan jauh lebih efisien, seringkali dengan membuang
+sebagian besar data di setiap langkah.</p>
 </div>
 </div>
 </div>
 <div class="container1">
-<div id="comparison-sort-1" class="section level1 header-container">
-<h1>Comparison Sort</h1>
+<div id="unsorted-search-1" class="section level1 header-container">
+<h1>Unsorted search</h1>
 </div>
+<p style="margin-bottom: 20px;">
+<p>ilustrasi kasus untuk Unsorted search -&gt; (15,22,55,21,32,43,12),
+cari 43<br />
+dan pencarian dilakukan dari data yang tidak terurut</p>
+</p>
 <div class="content-container">
-<div id="bubble-sort" class="section level2 special-header">
-<h2>Bubble Sort</h2>
+<div id="sequential-search" class="section level2 special-header">
+<h2>1. Sequential search</h2>
 </div>
-<p>Bubble Sort adalah algoritma sorting yang paling sederhana, dengan
-gagasan utama melakukan penyisiran berulang pada array sambil
-membandingkan pasangan elemen yang saling berdampingan dan menukarnya
-ketika urutannya tidak sesuai (misalnya elemen di kiri lebih besar
-daripada elemen di kanan).<br />
-Melalui mekanisme tersebut, elemen bernilai terbesar akan secara
-bertahap “menggelembung” ke arah posisi paling kanan pada akhir setiap
-iterasi hingga menempati posisi akhirnya.</p>
-<pre class="r"><code>bubble_sort &lt;- function(arr) {
-  n &lt;- length(arr)
-  for (i in 1:(n-1)) {
-    for (j in 1:(n-i)) {
-      if (arr[j] &gt; arr[j + 1]) {
-        # Tukar elemen
-        temp &lt;- arr[j]
-        arr[j] &lt;- arr[j + 1]
-        arr[j + 1] &lt;- temp
-      }
+<div id="pengertian" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Sequential search</strong> adalah metode mencari elemen
+dengan memeriksa setiap data secara berurutan, satu per satu, dari awal
+hingga akhir.</p>
+</div>
+<div id="contoh" class="section level3">
+<h3>Contoh</h3>
+<p>Vektor[7,5,1,9,3] (n = 3)<br />
+target dicari = 1</p>
+<p>Langkah-langkah iterasi<br />
+indeks = 1: cek vektor[1]. Apakah 7 == 1? jika tidak maka lanjut.<br />
+indeks = 2: cek vektor[2]. Apakah 7 == 2? jika tidak maka lanjut.<br />
+indeks = 3: cek vektor[3]. Apakah 7 == 3? Ya.<br />
+Ditemukan di indeks 3. Proses pencarian berhenti</p>
+<p><strong>Implementasi dalam R studio</strong><br />
+</p>
+<pre class="r"><code># 1. SEQUENTIAL SEARCH
+sequential_search &lt;- function(vec, target){
+  comparisons &lt;- 0
+  
+  for(i in 1:length(vec)){
+    comparisons &lt;- comparisons + 1
+    cat(&quot;Membandingkan&quot;, target, &quot;dengan indeks&quot;, i, &quot;=&quot;, vec[i], &quot;\n&quot;)
+    
+    if(vec[i] == target){
+      cat(&quot;Sequential Search: ditemukan di indeks&quot;, i, &quot;\n&quot;)
+      cat(&quot;Jumlah perbandingan:&quot;, comparisons, &quot;\n\n&quot;)
+      return(i)
     }
   }
-  return(arr)
-}</code></pre>
-</div>
-<div class="content-container">
-<div id="selection-sort" class="section level2 special-header">
-<h2>Selection Sort</h2>
-</div>
-<p>Selection Sort bekerja dengan cara memecah array menjadi dua segmen,
-yaitu:</p>
-<ul>
-<li>bagian terurut (kiri)</li>
-<li>bagian tidak terurut (kanan)</li>
-</ul>
-<p>Pada setiap iterasi, algoritma mencari elemen dengan nilai terkecil
-dari bagian yang belum terurut, kemudian menukarnya ke posisi yang
-semestinya di ujung kanan bagian yang sudah terurut.</p>
-<pre class="r"><code>selection_sort &lt;- function(arr) {
-  n &lt;- length(arr)
-  for (i in 1:(n-1)) {
-    min_index &lt;- i
-    for (j in (i+1):n) {
-      if (arr[j] &lt; arr[min_index]) {
-        min_index &lt;- j
-      }
-    }
-    # Tukar elemen
-    temp &lt;- arr[i]
-    arr[i] &lt;- arr[min_index]
-    arr[min_index] &lt;- temp
-  }
-  return(arr)
-}</code></pre>
-</div>
-<div class="content-container">
-<div id="insertion-sort" class="section level2 special-header">
-<h2>Insertion Sort</h2>
-</div>
-<p>Insertion Sort bekerja dengan cara mengambil satu elemen dari bagian
-yang belum terurut, kemudian menyisipkannya pada posisi yang sesuai di
-dalam bagian array yang sudah terurut sehingga urutan tetap terjaga.</p>
-<pre class="r"><code>insertion_sort &lt;- function(arr) {
-  n &lt;- length(arr)
-  for (i in 2:n) {
-    key &lt;- arr[i]
-    j &lt;- i - 1
-    while (j &gt; 0 &amp;&amp; arr[j] &gt; key) {
-      arr[j + 1] &lt;- arr[j]
-      j &lt;- j - 1
-    }
-    arr[j + 1] &lt;- key
-  }
-  return(arr)
-}</code></pre>
-</div>
-<div class="content-container">
-<div id="merge-sort" class="section level2 special-header">
-<h2>Merge Sort</h2>
-</div>
-<p>Merge Sort menerapkan strategi <strong>Divide and Conquer
-(D&amp;C)</strong> dengan cara pertama-tama memecah (Divide) array
-menjadi sub-array yang semakin kecil hingga tersisa bagian berukuran
-satu elemen, yang secara alami sudah terurut. Setelah itu, sub-array
-kecil tersebut digabungkan (Combine/Merge) kembali secara bertahap
-dengan cara menggabungkan dua bagian terurut menjadi satu array yang
-tetap terurut hingga seluruh elemen kembali menjadi satu array yang
-sudah tersusun rapi.</p>
-<pre class="r"><code>merge_sort &lt;- function(arr) {
-  if (length(arr) &lt;= 1) {
-    return(arr)
-  }
-  mid &lt;- floor(length(arr) / 2)
-  left &lt;- merge_sort(arr[1:mid])
-  right &lt;- merge_sort(arr[(mid + 1):length(arr)])
-  return(merge(left, right))
+  
+  cat(&quot;Sequential Search: tidak ditemukan\n&quot;)
+  cat(&quot;Jumlah perbandingan:&quot;, comparisons, &quot;\n\n&quot;)
+  return(NA)
 }
-merge &lt;- function(left, right) {
-  result &lt;- c()
-  i &lt;- 1
-  j &lt;- 1
-  while (i &lt;= length(left) &amp;&amp; j &lt;= length(right)) {
-    if (left[i] &lt;= right[j]) {
-      result &lt;- c(result, left[i])
-      i &lt;- i + 1
-    } else {
-      result &lt;- c(result, right[j])
-      j &lt;- j + 1
-    }
-  }
-  result &lt;- c(result, left[i:length(left)], right[j:length(right)])
-  return(result)
-}</code></pre>
-</div>
-<div class="content-container">
-<div id="quick-sort" class="section level2 special-header">
-<h2>Quick Sort</h2>
-</div>
-<p>Quick Sort bekerja dengan memilih satu elemen sebagai
-<strong>pivot</strong>, kemudian membagi array ke dalam dua bagian,
-yaitu elemen-elemen di sebelah kiri yang bernilai lebih kecil dari pivot
-dan elemen-elemen di sebelah kanan yang bernilai lebih besar dari pivot.
-Setelah pemisahan ini, proses yang sama diterapkan kembali secara
-rekursif pada kedua bagian tersebut hingga seluruh array terurut.</p>
-<pre class="r"><code>quick_sort &lt;- function(arr) {
-  if (length(arr) &lt;= 1) {
-    return(arr)
-  }
-  pivot &lt;- arr[1]
-  less &lt;- arr[arr &lt; pivot]
-  equal &lt;- arr[arr == pivot]
-  greater &lt;- arr[arr &gt; pivot]
-  return(c(quick_sort(less), equal, quick_sort(greater)))
-}</code></pre>
-</div>
-</div>
-<div class="container1">
-<div id="non-comparasion-sort" class="section level1 header-container">
-<h1>Non-Comparasion Sort</h1>
-</div>
-<div class="content-container">
-<div id="radix-sort" class="section level2 special-header">
-<h2>Radix Sort</h2>
-</div>
-<p>Radix Sort mengurutkan angka dengan memproses setiap digit secara
-terpisah, dimulai dari digit paling rendah (least significant digit)
-hingga digit paling tinggi (most significant digit). Pada setiap tahap,
-algoritma menggunakan metode pengurutan stabil seperti Counting Sort
-untuk mengurutkan elemen berdasarkan digit yang sedang diproses,
-sehingga memastikan bahwa urutan relatif elemen dengan digit yang sama
-tetap terjaga.</p>
-<pre class="r"><code>radix_sort &lt;- function(arr) {
-  max_val &lt;- max(arr)
-  exp &lt;- 1
-  while (max_val %/% exp &gt; 0) {
-    buckets &lt;- vector(&quot;list&quot;, 10)
-    for (x in arr) {
-      digit &lt;- (x %/% exp) %% 10
-      buckets[[digit + 1]] &lt;- c(buckets[[digit + 1]], x)
-    }
-    arr &lt;- unlist(buckets)
-    exp &lt;- exp * 10
-  }
-  return(arr)
-}</code></pre>
-</div>
-<div class="content-container">
-<div id="counting-sort" class="section level2 special-header">
-<h2>Counting Sort</h2>
-</div>
-<p>Counting Sort (Sortir Hitung) adalah algoritma yang sangat
-efisienketika nilai data berada pada rentang (range) yang sudah
-diketahui dan relatif terbatas (misalnya hanya bilangan 0–9 atau 1–100).
-Algoritma ini bekerja dengan membuat sebuah array bantu (seperti “ember”
-atau tabel frekuensi) untuk menghitung berapa kali setiap nilai muncul,
-lalu menggunakan informasi frekuensi tersebut untuk menyusun kembali
-elemen-elemen ke dalam array keluaran dalam urutan yang terurut.</p>
-<pre class="r"><code>counting_sort &lt;- function(arr) {
-  max_val &lt;- max(arr)
-  count &lt;- numeric(max_val + 1)
-  output &lt;- numeric(length(arr))
 
-  for (x in arr) count[x + 1] &lt;- count[x + 1] + 1
-  for (i in 2:length(count)) count[i] &lt;- count[i] + count[i-1]
-  for (i in seq(length(arr), 1)) {
-    output[count[arr[i] + 1]] &lt;- arr[i]
-    count[arr[i] + 1] &lt;- count[arr[i] + 1] - 1
+vec1 &lt;- c(7, 5, 1, 9, 3)
+target1 &lt;- 1
+sequential_search(vec1, target1)</code></pre>
+<pre><code>## Membandingkan 1 dengan indeks 1 = 7 
+## Membandingkan 1 dengan indeks 2 = 5 
+## Membandingkan 1 dengan indeks 3 = 1 
+## Sequential Search: ditemukan di indeks 3 
+## Jumlah perbandingan: 3</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+</div>
+<div class="content-container">
+<div id="hash-table-search" class="section level2 special-header">
+<h2>2. Hash Table Search</h2>
+</div>
+<div id="pengertian-1" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Hash Table Search</strong> adalah metode pencarian
+menggunakan fungsi hash untuk menghitung indeks (posisi) data secara
+langsung, memungkinkan pencarian instan tanpa perbandingan.</p>
+</div>
+<div id="contoh-1" class="section level3">
+<h3>Contoh 1</h3>
+<p><strong>Pencarian ideal/tanpa tabrakan</strong> vektor[7,5,1,9,3]
+Fungsi Hash (Contoh): Gunakan fungsi sederhana indeks = (nilai % 5) + 1.
+(Modulo 5, lalu +1 agar 1-based).</p>
+<p>Proses Membangun Tabel Hash (Setup):<br />
+7: (7 % 5) + 1 = 2 + 1 = 3. Simpan 7 di bucket [3].<br />
+5: (5 % 5) + 1 = 0 + 1 = 1. Simpan 5 di bucket [1].<br />
+1: (1 % 5) + 1 = 1 + 1 = 2. Simpan 1 di bucket [2].<br />
+9: (9 % 5) + 1 = 4 + 1 = 5. Simpan 9 di bucket [5].<br />
+3: (3 % 5) + 1 = 3 + 1 = 4. Simpan 3 di bucket [4].</p>
+<p>Tabel Hash Final: [ (1): [5], (2): [1], (3): [7], (4): [3], (5): [9]
+]</p>
+<p>Target dicari : 9</p>
+<p>Iterasi Pencarian: Hitung hash dari Target 9: indeks = (9 % 5) + 1 =
+5. Lompat langsung ke bucket indeks 5. Periksa isi bucket [5]. Ditemukan
+9.</p>
+<p>DITEMUKAN. (Pencarian selesai dalam 1 langkah).</p>
+<p><strong>Implementasi dalam R studio</strong><br />
+</p>
+<pre class="r"><code># Hash tabel search
+hash_search &lt;- function(vec, target){
+  size &lt;- length(vec)
+  table &lt;- vector(&quot;list&quot;, size)
+  
+  cat(&quot;Membangun hash table...\n&quot;)
+  for(v in vec){
+    idx &lt;- (v %% size) + 1
+    table[[idx]] &lt;- c(table[[idx]], v)
+    cat(&quot;Memasukkan&quot;, v, &quot;ke bucket&quot;, idx, &quot;\n&quot;)
   }
-  return(output)
-}</code></pre>
+  
+  idx_t &lt;- (target %% size) + 1
+  cat(&quot;\nTarget berada di bucket&quot;, idx_t, &quot;\n&quot;)
+  cat(&quot;Isi bucket:&quot;, table[[idx_t]], &quot;\n&quot;)
+  
+  if(target %in% table[[idx_t]]){
+    cat(&quot;Hash Search: ditemukan di bucket&quot;, idx_t, &quot;\n\n&quot;)
+    return(idx_t)
+  } else {
+    cat(&quot;Hash Search: tidak ditemukan\n\n&quot;)
+    return(NA)
+  }
+}
+vec2 &lt;- c(7, 5, 1, 9, 3)
+target2 &lt;- 9
+hash_search(vec2, target2)</code></pre>
+<pre><code>## Membangun hash table...
+## Memasukkan 7 ke bucket 3 
+## Memasukkan 5 ke bucket 1 
+## Memasukkan 1 ke bucket 2 
+## Memasukkan 9 ke bucket 5 
+## Memasukkan 3 ke bucket 4 
+## 
+## Target berada di bucket 5 
+## Isi bucket: 9 
+## Hash Search: ditemukan di bucket 5</code></pre>
+<pre><code>## [1] 5</code></pre>
+</div>
+<div id="contoh-2" class="section level3">
+<h3>Contoh 2</h3>
+<p><strong>Pencarian dengan tabrakan(Collision)</strong>
+vektor[7,5,1,9,3,14]</p>
+<p>Fungsi Hash: indeks = (nilai % 5) + 1</p>
+<p>Proses Membangun Tabel Hash:</p>
+<p>… (Sama seperti di atas)</p>
+<p>14: (14 % 5) + 1 = 4 + 1 = 5.</p>
+<p>Bucket [5] sudah berisi 9. Kita tambahkan 14 ke bucket yang sama
+(disebut chaining).</p>
+<p>Tabel Hash Final: [ (1): [5], (2): [1], (3): [7], (4): [3], (5): [9,
+14] ]</p>
+<p>Target Dicari: 14</p>
+<p>Iterasi Pencarian: Hitung hash dari Target 14: indeks = (14 % 5) + 1
+= 5.</p>
+<p>Lompat langsung ke bucket indeks 5.</p>
+<p>Isi bucket [5] adalah [9, 14]. Kita lakukan Sequential Search di
+dalam bucket ini.</p>
+<p>Cek elemen 1 di bucket: Apakah 9 == 14? Tidak.</p>
+<p>Cek elemen 2 di bucket: Apakah 14 == 14? Ya.</p>
+<p>DITEMUKAN.</p>
+<p><strong>Implementasi dalam R studio</strong><br />
+</p>
+<pre class="r"><code># hash table search
+vec1 &lt;- c(7, 5, 1, 9, 3)
+target1 &lt;- 1
+sequential_search(vec1, target1)</code></pre>
+<pre><code>## Membandingkan 1 dengan indeks 1 = 7 
+## Membandingkan 1 dengan indeks 2 = 5 
+## Membandingkan 1 dengan indeks 3 = 1 
+## Sequential Search: ditemukan di indeks 3 
+## Jumlah perbandingan: 3</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>hash_search &lt;- function(vec, target){
+  mod_value &lt;- 5
+  table &lt;- vector(&quot;list&quot;, mod_value)
+  
+  cat(&quot;Membangun hash table (mod 5)...\n&quot;)
+  for(v in vec){
+    idx &lt;- (v %% mod_value) + 1
+    table[[idx]] &lt;- c(table[[idx]], v)
+    cat(&quot;Memasukkan&quot;, v, &quot;ke bucket&quot;, idx, &quot;\n&quot;)
+  }
+  
+  idx_t &lt;- (target %% mod_value) + 1
+  cat(&quot;\nTarget berada di bucket&quot;, idx_t, &quot;\n&quot;)
+  cat(&quot;Isi bucket:&quot;, table[[idx_t]], &quot;\n&quot;)
+  
+  if(target %in% table[[idx_t]]){
+    cat(&quot;Hash Search: ditemukan di bucket&quot;, idx_t, &quot;\n\n&quot;)
+    return(idx_t)
+  } else {
+    cat(&quot;Hash Search: tidak ditemukan\n\n&quot;)
+    return(NA)
+  }
+}
+vec2 &lt;- c(7, 5, 1, 9, 3, 14)
+target2 &lt;- 14
+hash_search(vec2, target2)</code></pre>
+<pre><code>## Membangun hash table (mod 5)...
+## Memasukkan 7 ke bucket 3 
+## Memasukkan 5 ke bucket 1 
+## Memasukkan 1 ke bucket 2 
+## Memasukkan 9 ke bucket 5 
+## Memasukkan 3 ke bucket 4 
+## Memasukkan 14 ke bucket 5 
+## 
+## Target berada di bucket 5 
+## Isi bucket: 9 14 
+## Hash Search: ditemukan di bucket 5</code></pre>
+<pre><code>## [1] 5</code></pre>
+</div>
+</div>
+<div class="content-container">
+<div id="binary-search-tree-bst-search" class="section level2 special-header">
+<h2>3. Binary Search Tree (BST) Search</h2>
+</div>
+<div id="pengertian-2" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Binary Search Tree</strong> adalah metode pencarian data
+dengan menelusuri struktur pohon, bergerak ke cabang kiri (nilai lebih
+kecil) atau kanan (nilai lebih besar) secara rekursif.</p>
+</div>
+<div id="contoh-3" class="section level3">
+<h3>Contoh</h3>
+<p>Vektor[8, 10, 3, 14, 6, 1, 7, 4]<br />
+Target dicari : 7</p>
+<p>Iterasi Pencarian (Menelusuri Jalur):<br />
+1.Mulai dari Akar (Root). Nilai 8.<br />
+2.Bandingkan: Target (7) &lt; 8? Ya. Pindah KIRI ke simpul 3.<br />
+3.Bandingkan: Target (7) &gt; 3? Ya. Pindah KANAN ke simpul 6.<br />
+4.Bandingkan: Target (7) &gt; 6? Ya. Pindah KANAN ke simpul 7.<br />
+5.Bandingkan: Target (7) == 7? Ya.<br />
+6.DITEMUKAN.</p>
+<p><strong>Implementasi di R studio</strong><br />
+</p>
+<pre class="r"><code># BST search
+node &lt;- function(val, left=NULL, right=NULL){
+  list(val=val, left=left, right=right)
+}
+
+insert_bst &lt;- function(root, val){
+  if(is.null(root)) return(node(val))
+  if(val &lt; root$val) root$left &lt;- insert_bst(root$left, val)
+  else root$right &lt;- insert_bst(root$right, val)
+  return(root)
+}
+
+search_bst &lt;- function(root, target){
+  if(is.null(root)){
+    cat(&quot;Node kosong → tidak ditemukan\n&quot;)
+    return(NA)
+  }
+  
+  cat(&quot;Mengunjungi node:&quot;, root$val, &quot;\n&quot;)
+  
+  if(root$val == target){
+    cat(&quot;BST Search: ditemukan!\n\n&quot;)
+    return(TRUE)
+  }
+  
+  if(target &lt; root$val){
+    cat(&quot;Menuju subtree kiri...\n&quot;)
+    return(search_bst(root$left, target))
+  } else {
+    cat(&quot;Menuju subtree kanan...\n&quot;)
+    return(search_bst(root$right, target))
+  }
+}
+
+vals &lt;- c(8, 10, 3, 14, 6, 1, 7, 4)
+root &lt;- NULL
+for(v in vals) root &lt;- insert_bst(root, v)
+
+target3 &lt;- 7
+search_bst(root, target3)</code></pre>
+<pre><code>## Mengunjungi node: 8 
+## Menuju subtree kiri...
+## Mengunjungi node: 3 
+## Menuju subtree kanan...
+## Mengunjungi node: 6 
+## Menuju subtree kanan...
+## Mengunjungi node: 7 
+## BST Search: ditemukan!</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
 </div>
 </div>
 <div class="container1">
-<div id="daftar-pustaka" class="section level1 header-container">
-<h1>Daftar Pustaka</h1>
+<div id="sorted-search-1" class="section level1 header-container">
+<h1>Sorted search</h1>
 </div>
-<div id="refs">
-<p>Cherukuri, N. S. (2021). A comprehensive study of various sorting
-algorithms. International Journal of Science and Research, 10(11),
-278–282.</p>
+<div class="content-container">
+<div id="binary-search" class="section level2 special-header">
+<h2>1. Binary Search</h2>
+</div>
+<div id="pengertian-3" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Binary Search</strong> adalah metode pencarian dengan cara
+membandingkan nilai target dengan elemen di posisi tengah array, lalu
+menentukan apakah pencarian dilanjutkan ke bagian kiri atau kanan
+berdasarkan hasil perbandingan tersebut. Proses ini berulang dengan
+terus membuang setengah ruang pencarian pada setiap langkah hingga
+elemen ditemukan atau tidak ada lagi bagian yang tersisa.</p>
+</div>
+<div id="contoh-4" class="section level3">
+<h3>Contoh</h3>
+<p>Vektor Awal (HARUS TERURUT):<br />
+[2, 3, 5, 6, 8, 9, 11, 12, 14] (n = 9)</p>
+<p>Misalkan seorang mahasiswa ingin mencari <strong>nomor loker
+9</strong> di deretan loker yang sudah disusun berdasarkan nomor
+terkecil hingga terbesar.  Target Dicari: 9  Gunakan tiga penunjuk
+(pointer): <code>kiri</code>, <code>kanan</code>, dan
+<code>tengah</code>.</p>
+<p><strong>Iterasi 1</strong></p>
+<p>kiri = 1, kanan = 9<br />
+tengah = floor((1 + 9) / 2) = 5<br />
+Cek vektor[tengah] → vektor[5] adalah 8<br />
+Perbandingan: Target (9) &gt; 8 → target pasti ada di kanan<br />
+Atur ulang batas: kiri = tengah + 1 = 6<br />
+Ruang Pencarian Baru: [9, 11, 12, 14] (indeks 6 s/d 9)</p>
+<p><strong>Iterasi 2</strong></p>
+<p>kiri = 6, kanan = 9<br />
+tengah = floor((6 + 9) / 2) = 7<br />
+Cek vektor[tengah] → vektor[7] adalah 11<br />
+Perbandingan: Target (9) &lt; 11 → target pasti ada di kiri<br />
+Atur ulang batas: kanan = tengah - 1 = 6<br />
+Ruang Pencarian Baru: [9] (indeks 6 s/d 6)</p>
+<p><strong>Iterasi 3</strong></p>
+<p>kiri = 6, kanan = 6<br />
+tengah = floor((6 + 6) / 2) = 6<br />
+Cek vektor[tengah] → vektor[6] adalah 9<br />
+Perbandingan: Target (9) == 9<br />
+DITEMUKAN di indeks 6. Proses pencarian berhenti.</p>
+<p><strong>implementasi di R studio</strong></p>
+<pre class="r"><code>binary_search &lt;- function(vec, target){
+  left &lt;- 1
+  right &lt;- length(vec)
+  
+  while(left &lt;= right){
+    mid &lt;- floor((left + right)/2)
+    if(vec[mid] == target) return(paste(&quot;Binary Search: ditemukan di indeks&quot;, mid))
+    else if(target &lt; vec[mid]) right &lt;- mid - 1
+    else left &lt;- mid + 1
+  }
+  
+  return(&quot;Binary Search: tidak ditemukan&quot;)
+}
+
+result &lt;- c(2, 3, 5, 6, 8, 9, 11, 12, 14)
+binary_search(result, 9)</code></pre>
+<pre><code>## [1] &quot;Binary Search: ditemukan di indeks 6&quot;</code></pre>
+</div>
+</div>
+<div class="content-container">
+<div id="interpolation-search" class="section level2 special-header">
+<h2>2. Interpolation Search</h2>
+</div>
+<div id="pengertian-4" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Interpolation Search</strong> adalah metode pencarian dengan
+cara memperkirakan posisi elemen yang dicari berdasarkan <strong>nilai
+data</strong>, bukan sekadar membelah array tepat di tengah. Metode
+pencarian ini menggunakan rumus interpolasi untuk menebak lokasi indeks
+yang kemungkinan besar berisi nilai target, dengan asumsi bahwa data
+terdistribusi relatif seragam, sehingga pencarian dapat dilakukan lebih
+cepat dibandingkan sekadar pembagian tengah berulang.</p>
+</div>
+<div id="contoh-5" class="section level2">
+<h2>Contoh</h2>
+<p><strong>Contoh 1: Pencarian Ideal (Data Seragam)</strong></p>
+<p>Vektor Awal:<br />
+[5, 10, 15, 20, 25, 30, 35, 40, 45, 50] (n = 10)</p>
+<p>Target Dicari: 45</p>
+<p>Iterasi 1:<br />
+L = 1 (nilai 5), R = 10 (nilai 50).</p>
+<p>Formula (1-based):<br />
+pos = L + floor( ((Target - V[L]) * (R - L)) / (V[R] - V[L]) )</p>
+<p>pos = 1 + floor( ((45 - 5) * (10 - 1)) / (50 - 5) )<br />
+pos = 1 + floor( (40 * 9) / 45 )<br />
+pos = 1 + floor( 360 / 45 )<br />
+pos = 1 + 8 = 9.</p>
+<p>Cek vektor[pos] → vektor[9] adalah 45.<br />
+DITEMUKAN di <strong>indeks 9</strong>. (Hanya 1 iterasi, karena data
+seragam dan tebakan posisi sangat dekat dengan nilai sebenarnya.)</p>
+<p><strong>Contoh 2: Pencarian Kasus Buruk (Data Tidak
+Seragam)</strong></p>
+<p>Vektor Awal:<br />
+[1, 2, 4, 8, 16, 100] (n = 6)</p>
+<p>Target Dicari: 8</p>
+<p>Iterasi 1:<br />
+L = 1 (nilai 1), R = 6 (nilai 100).</p>
+<p>pos = 1 + floor( ((8 - 1) * (6 - 1)) / (100 - 1) )<br />
+pos = 1 + floor( (7 * 5) / 99 )<br />
+pos = 1 + floor( 35 / 99 )<br />
+pos = 1 + 0 = 1.</p>
+<p>Cek vektor[1] (nilai 1).<br />
+Target (8) &gt; 1.<br />
+Ruang pencarian baru: L = pos + 1 = 2, R tetap 6.</p>
+<p>Iterasi 2:<br />
+L = 2 (nilai 2), R = 6 (nilai 100).</p>
+<p>pos = 2 + floor( ((8 - 2) * (6 - 2)) / (100 - 2) )<br />
+pos = 2 + floor( (6 * 4) / 98 )<br />
+pos = 2 + floor( 24 / 98 )<br />
+pos = 2 + 0 = 2.</p>
+<p>Cek vektor[2] (nilai 2).<br />
+Target (8) &gt; 2.<br />
+Ruang pencarian baru: L = pos + 1 = 3, R tetap 6.</p>
+<p>Iterasi 3:<br />
+L = 3 (nilai 4), R = 6 (nilai 100).</p>
+<p>pos = 3 + floor( ((8 - 4) * (6 - 3)) / (100 - 4) )<br />
+pos = 3 + floor( (4 * 3) / 96 )<br />
+pos = 3 + floor( 12 / 96 )<br />
+pos = 3 + 0 = 3.</p>
+<p>Cek vektor[3] (nilai 4).<br />
+Target (8) &gt; 4.<br />
+Ruang pencarian baru: L = pos + 1 = 4, R tetap 6.</p>
+<p>Iterasi 4:<br />
+L = 4 (nilai 8), R = 6 (nilai 100).</p>
+<p>pos = 4 + floor( ((8 - 8) * (6 - 4)) / (100 - 8) )<br />
+pos = 4 + floor( 0 / 92 )<br />
+pos = 4 + 0 = 4.</p>
+<p>Cek vektor[4] (nilai 8).<br />
+DITEMUKAN di <strong>indeks 4.</strong></p>
+<p><strong>Implementasi di R studio</strong><br />
+</p>
+<pre class="r"><code>interpolation_search &lt;- function(vec, target){
+  L &lt;- 1
+  R &lt;- length(vec)
+  
+  while(L &lt;= R &amp;&amp; target &gt;= vec[L] &amp;&amp; target &lt;= vec[R]){
+    pos &lt;- L + floor((target - vec[L]) * (R - L) / (vec[R] - vec[L]))
+    
+    if(vec[pos] == target) return(paste(&quot;Interpolation Search: ditemukan di indeks&quot;, pos))
+    if(vec[pos] &lt; target) L &lt;- pos + 1
+    else R &lt;- pos - 1
+  }
+  
+  return(&quot;Interpolation Search: tidak ditemukan&quot;)
+}
+
+vec_seragam &lt;- c(5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+interpolation_search(vec_seragam, 45)</code></pre>
+<pre><code>## [1] &quot;Interpolation Search: ditemukan di indeks 9&quot;</code></pre>
+<pre class="r"><code>vec_tidak_seragam &lt;- c(1, 2, 4, 8, 16, 100)
+interpolation_search(vec_tidak_seragam, 8)</code></pre>
+<pre><code>## [1] &quot;Interpolation Search: ditemukan di indeks 4&quot;</code></pre>
+</div>
+</div>
+<div class="content-container">
+<div id="jump-search" class="section level2 special-header">
+<h2>3. Jump Search</h2>
+</div>
+<div id="pengertian-5" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Jump Search</strong> adalah metode pencarian yang bekerja
+dengan cara “melompat” maju dalam langkah (blok) berukuran tetap untuk
+menemukan rentang di mana target kemungkinan berada. Setelah blok yang
+relevan teridentifikasi, algoritma kemudian melakukan pencarian
+berurutan (linear search) di dalam blok tersebut hingga elemen ditemukan
+atau dipastikan tidak ada.</p>
+</div>
+<div id="contoh-6" class="section level3">
+<h3>Contoh</h3>
+<p>Jump Search</p>
+<p>Contoh 1: Target Ditemukan</p>
+<p>Vektor Awal:<br />
+[2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32] (n =
+16)</p>
+<p>Target Dicari: 26</p>
+<p>Setup:<br />
+Ukuran lompatan m = sqrt(16) = 4.</p>
+<p>Iterasi 1 (Lompatan):<br />
+Cek indeks 1 * 4 = 4.<br />
+vektor[4] adalah 8.<br />
+Target (26) &gt; 8. Lanjut lompat.</p>
+<p>Iterasi 2 (Lompatan):<br />
+Cek indeks 2 * 4 = 8.<br />
+vektor[8] adalah 16.<br />
+Target (26) &gt; 16. Lanjut lompat.</p>
+<p>Iterasi 3 (Lompatan):<br />
+Cek indeks 3 * 4 = 12.<br />
+vektor[12] adalah 24.<br />
+Target (26) &gt; 24. Lanjut lompat.</p>
+<p>Iterasi 4 (Lompatan):<br />
+Cek indeks 4 * 4 = 16.<br />
+vektor[16] adalah 32.<br />
+Target (26) &lt; 32. STOP.<br />
+Target, jika ada, pasti berada di antara indeks 12 (lompatan sebelumnya)
+dan indeks 16.</p>
+<p>Iterasi 5 (Sequential Search di blok terakhir):<br />
+Mulai pencarian berurutan dari indeks 12 + 1 = 13.</p>
+<p>Cek vektor[13]: 26 == 26? Ya.<br />
+DITEMUKAN di indeks 13.</p>
+<p><strong>Implementasi di R studio</strong><br />
+</p>
+<pre class="r"><code>jump_search &lt;- function(vec, target){
+  n &lt;- length(vec)
+  step &lt;- floor(sqrt(n))
+  prev &lt;- 1
+  
+  while(prev &lt;= n &amp;&amp; vec[min(step, n)] &lt; target){
+    prev &lt;- step + 1
+    step &lt;- step + floor(sqrt(n))
+  }
+  
+  for(i in prev:min(step, n)){
+    if(vec[i] == target) return(paste(&quot;Jump Search: ditemukan di indeks&quot;, i))
+  }
+  
+  return(&quot;Jump Search: tidak ditemukan&quot;)
+}
+
+vec_jump &lt;- c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32)
+jump_search(vec_jump, 26)</code></pre>
+<pre><code>## [1] &quot;Jump Search: ditemukan di indeks 13&quot;</code></pre>
+</div>
 </div>
 </div>
 

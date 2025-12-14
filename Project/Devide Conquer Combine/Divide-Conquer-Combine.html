@@ -13,7 +13,7 @@
 
 <meta name="date" content="2025-12-04" />
 
-<title>Algorithm of Sorting</title>
+<title>Mini Project Kelompok 10</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -752,7 +752,7 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Algorithm of Sorting</h1>
+<h1 class="title toc-ignore">Mini Project Kelompok 10</h1>
 <h4 class="author">Raynaldi, Muhammad Taqi Husaini, Fahri Muhammad</h4>
 <h4 class="date">2025-12-04</h4>
 
@@ -761,10 +761,10 @@ display: none;
 
 <div class="main-title">
 <div class="title-main">
-Algorithm of Sorting
+Divide, Conquer, Combine
 </div>
 <div class="title-sub">
-Pertemuan 10
+Pertemuan 9
 </div>
 </div>
 <nav id="custom-toc" aria-label="Daftar Isi">
@@ -776,266 +776,289 @@ Pertemuan 10
 </div>
 </nav>
 <div class="container1">
-<div id="pengertian" class="section level1 header-container">
-<h1>Pengertian</h1>
+<div id="definisi" class="section level1 header-container">
+<h1>Definisi</h1>
 </div>
 <div class="content-container">
-<p>Algoritma sorting adalah kumpulan langkah sistematis untuk menyusun
-atau mengurutkan sekumpulan data ke dalam urutan tertentu, misalnya:</p>
-<ul>
-<li>dari terkecil ke terbesar (ascending)</li>
-<li>dari terbesar ke terkecil (descending)</li>
-</ul>
+<div id="divide" class="section level2">
+<h2>Divide</h2>
+<p>Divide adalah tahap yang memecah masalah integer programming kompleks
+menjadi sub-masalah yang lebih kecil dan terstruktur, dilakukan secara
+rekursif untuk mencapai ukuran yang memungkinkan penyelesaian lebih
+mudah dan efisien.</p>
 </div>
+<div id="conquer" class="section level2">
+<h2>Conquer</h2>
+<p>Conquer menyelesaikan sub-masalah secara independen, menggunakan
+teknik optimasi lokal yang sesuai atau penyelesaian langsung jika
+sub-masalah mencapai kondisi dasar, sehingga mempercepat proses
+pemecahan masalah keseluruhan.</p>
 </div>
-<div class="container1">
-<div id="jenis-algoritma-sorting" class="section level1 header-container">
-<h1>Jenis Algoritma Sorting</h1>
-</div>
-<div class="content-container">
-<div id="comparison-sort" class="section level2">
-<h2>Comparison Sort</h2>
-<p>Algoritma yang mengurutkan data dengan cara
-<strong>membandingkan</strong> pasangan elemen dan menentukan posisi
-elemen berdasarkan hasil perbandingan tersebut.<br />
-Algortima yang termasuk dalam kategori ini antara lain:</p>
-<ul>
-<li><p><strong>Bubble Sort</strong><br />
-Membandingkan setiap elemen dengan elemen berikutnya, dan menukar
-posisinya jika urutannya salah. Proses ini diulang hingga semua elemen
-terurut.<br />
-</p></li>
-<li><p><strong>Selection Sort</strong><br />
-Memilih elemen terkecil dari bagian tidak terurut, kemudian
-menempatkannya di posisi yang sesuai pada bagian terurut.<br />
-</p></li>
-<li><p><strong>Insertion Sort</strong><br />
-Memasukkan setiap elemen ke posisi yang benar di bagian terurut dari
-array.<br />
-</p></li>
-<li><p><strong>Merge Sort</strong><br />
-Membagi array menjadi dua bagian secara rekursif hingga bagian terkecil,
-kemudian menggabungkannya kembali dalam urutan yang benar.<br />
-</p></li>
-<li><p><strong>Quick Sort</strong><br />
-Memilih elemen pivot, lalu membagi array berdasarkan elemen yang lebih
-kecil atau lebih besar dari pivot, dan mengulang proses ini secara
-rekursif.</p></li>
-</ul>
-</div>
-<div id="non-comparison-sort" class="section level2">
-<h2>Non-Comparison Sort</h2>
-<p>Algoritma yang <strong>tidak menggunakan perbandingan
-langsung</strong> antar elemen. Algortima yang termasuk dalam kategori
-ini antara lain:</p>
-<ul>
-<li><strong>Counting Sort</strong><br />
-Mengurutkan angka berdasarkan digit per digit, mulai dari digit terkecil
-hingga digit terbesar.</li>
-<li><strong>Radix Sort</strong><br />
-Menggunakan array tambahan untuk menghitung frekuensi setiap elemen dan
-menempatkan elemen-elemen tersebut ke posisi yang tepat sesuai
-jumlahnya.</li>
-</ul>
+<div id="combine" class="section level2">
+<h2>Combine</h2>
+<p>Combine menggabungkan solusi-solusi sub-masalah menjadi solusi global
+yang optimal dengan metode agregasi yang efisien, memastikan hasil akhir
+memenuhi kriteria solusi terbaik untuk masalah asli.</p>
 </div>
 </div>
 </div>
 <div class="container1">
-<div id="comparison-sort-1" class="section level1 header-container">
-<h1>Comparison Sort</h1>
+<div id="konsep-tambahan" class="section level1 header-container">
+<h1>Konsep Tambahan</h1>
 </div>
+<p style="margin-bottom: 20px;">
+Dalam paradigma Divide, Conquer, dan Combine, terdapat 4 konsep tambahan
+yang memperkaya proses algoritma ini. <strong>Branching factor dan
+balance</strong> berperan pada tahap <strong>Divide</strong>, dimana
+branching factor menentukan jumlah sub-bagian yang dihasilkan saat
+memecah masalah, sementara balance memastikan setiap sub-bagian memiliki
+ukuran seragam agar pemrosesan efisien. Selanjutnya <strong>data
+dependence of divide function</strong> pada <strong>Divide</strong>
+menyesuaikan pembagian berdasarkan nilai data, dan pada tahap
+<strong>Conquer</strong> konsep <strong>control parallelism or
+sequentially</strong> memungkinkan pilihan antara pemrosesan paralel
+untuk kecepatan atau sequential untuk eksekusi berurutan. Semua konsep
+ini terintegrasi hingga tahap <strong>Combine</strong> yang
+menggabungkan solusi sub-masalah menjadi hasil akhir optimal.
+</p>
 <div class="content-container">
-<div id="bubble-sort" class="section level2 special-header">
-<h2>Bubble Sort</h2>
+<div id="branching-factor" class="section level2 special-header">
+<h2>Branching Factor</h2>
 </div>
-<p>Bubble Sort adalah algoritma sorting yang paling sederhana, dengan
-gagasan utama melakukan penyisiran berulang pada array sambil
-membandingkan pasangan elemen yang saling berdampingan dan menukarnya
-ketika urutannya tidak sesuai (misalnya elemen di kiri lebih besar
-daripada elemen di kanan).<br />
-Melalui mekanisme tersebut, elemen bernilai terbesar akan secara
-bertahap “menggelembung” ke arah posisi paling kanan pada akhir setiap
-iterasi hingga menempati posisi akhirnya.</p>
-<pre class="r"><code>bubble_sort &lt;- function(arr) {
-  n &lt;- length(arr)
-  for (i in 1:(n-1)) {
-    for (j in 1:(n-i)) {
-      if (arr[j] &gt; arr[j + 1]) {
-        # Tukar elemen
-        temp &lt;- arr[j]
-        arr[j] &lt;- arr[j + 1]
-        arr[j + 1] &lt;- temp
-      }
-    }
-  }
-  return(arr)
-}</code></pre>
+<div id="pengertian" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Branching factor</strong> adalah jumlah sub-bagian yang
+dihasilkan saat memecah masalah menjadi bagian-bagian yang lebih kecil
+pada langkah Divide. Semakin banyak bagian yang dihasilkan pada setiap
+langkah, semakin tinggi branching factor-nya, sehingga memengaruhi
+kompleksitas rekursi keseluruhan dalam proses Divide, Conquer, dan
+Combine.</p>
 </div>
-<div class="content-container">
-<div id="selection-sort" class="section level2 special-header">
-<h2>Selection Sort</h2>
-</div>
-<p>Selection Sort bekerja dengan cara memecah array menjadi dua segmen,
-yaitu:</p>
+<div id="contoh" class="section level3">
+<h3>Contoh</h3>
 <ul>
-<li>bagian terurut (kiri)</li>
-<li>bagian tidak terurut (kanan)</li>
+<li>Array <code>[1, 2, 3, 4]</code> dibagi menjadi 2 bagian → Branching
+Factor = 2</li>
+<li>Array <code>[1, 2, 3, 4, 5, 6]</code> dibagi menjadi 3 bagian →
+Branching Factor = 3</li>
 </ul>
-<p>Pada setiap iterasi, algoritma mencari elemen dengan nilai terkecil
-dari bagian yang belum terurut, kemudian menukarnya ke posisi yang
-semestinya di ujung kanan bagian yang sudah terurut.</p>
-<pre class="r"><code>selection_sort &lt;- function(arr) {
-  n &lt;- length(arr)
-  for (i in 1:(n-1)) {
-    min_index &lt;- i
-    for (j in (i+1):n) {
-      if (arr[j] &lt; arr[min_index]) {
-        min_index &lt;- j
-      }
-    }
-    # Tukar elemen
-    temp &lt;- arr[i]
-    arr[i] &lt;- arr[min_index]
-    arr[min_index] &lt;- temp
-  }
-  return(arr)
-}</code></pre>
+<p><strong>Intinya</strong><br />
+Branching Factor menunjukkan seberapa banyak bagian kecil yang
+dihasilkan pada setiap langkah.</p>
+</div>
 </div>
 <div class="content-container">
-<div id="insertion-sort" class="section level2 special-header">
-<h2>Insertion Sort</h2>
+<div id="balance" class="section level2 special-header">
+<h2>Balance</h2>
 </div>
-<p>Insertion Sort bekerja dengan cara mengambil satu elemen dari bagian
-yang belum terurut, kemudian menyisipkannya pada posisi yang sesuai di
-dalam bagian array yang sudah terurut sehingga urutan tetap terjaga.</p>
-<pre class="r"><code>insertion_sort &lt;- function(arr) {
-  n &lt;- length(arr)
-  for (i in 2:n) {
-    key &lt;- arr[i]
-    j &lt;- i - 1
-    while (j &gt; 0 &amp;&amp; arr[j] &gt; key) {
-      arr[j + 1] &lt;- arr[j]
-      j &lt;- j - 1
-    }
-    arr[j + 1] &lt;- key
-  }
-  return(arr)
-}</code></pre>
+<div id="pengertian-1" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Balance</strong> memiliki arti bahwa setiap sub-bagian yang
+dipecah pada tahap <strong>Divide</strong> memiliki ukuran atau beban
+yang sama sehingga proses pemecahannya adil dan efisien, menghindari
+ketidakseimbangan yang dapat menurunkan performa algoritma secara
+keseluruhan.</p>
+</div>
+<div id="contoh-1" class="section level3">
+<h3>Contoh</h3>
+<ul>
+<li><code>[3, 5, 2, 7]</code> → <code>[3, 5]</code> dan
+<code>[2, 7]</code></li>
+<li><code>[11, 5, 7, 3, 9]</code> → <code>[11, 5]</code> dan
+<code>[7, 3, 9]</code></li>
+</ul>
+<p><strong>Intinya</strong><br />
+Balance memastikan pemecahan masalah dilakukan secara efisien dan
+merata.</p>
+</div>
 </div>
 <div class="content-container">
-<div id="merge-sort" class="section level2 special-header">
-<h2>Merge Sort</h2>
+<div id="data-dependence-of-divide-function" class="section level2 special-header">
+<h2>Data Dependence of Divide Function</h2>
 </div>
-<p>Merge Sort menerapkan strategi <strong>Divide and Conquer
-(D&amp;C)</strong> dengan cara pertama-tama memecah (Divide) array
-menjadi sub-array yang semakin kecil hingga tersisa bagian berukuran
-satu elemen, yang secara alami sudah terurut. Setelah itu, sub-array
-kecil tersebut digabungkan (Combine/Merge) kembali secara bertahap
-dengan cara menggabungkan dua bagian terurut menjadi satu array yang
-tetap terurut hingga seluruh elemen kembali menjadi satu array yang
-sudah tersusun rapi.</p>
-<pre class="r"><code>merge_sort &lt;- function(arr) {
-  if (length(arr) &lt;= 1) {
+<div id="pengertian-2" class="section level3">
+<h3>Pengertian</h3>
+<p><strong>Data Dependence of Divide Function</strong> pada tahap
+<strong>Divide</strong> bergantung pada nilai-nilai data yang ada,
+artinya pembagian tidak hanya didasarkan pada jumlah elemen tetapi juga
+sifat atau nilai data tersebut untuk menentukan cara pemecahan
+terbaik.</p>
+</div>
+<div id="contoh-2" class="section level3">
+<h3>Contoh</h3>
+<p>Mencari elemen pada <code>[1, 3, 5, 7, 9]</code> → dibagi berdasarkan
+nilai tengah (5).</p>
+<p><strong>Intinya</strong><br />
+Pembagian mempertimbangkan nilai elemen agar pemecahan lebih
+efektif.</p>
+<hr />
+</div>
+</div>
+<div class="content-container">
+<div id="control-parallelism-dan-sequentially" class="section level2 special-header">
+<h2>Control Parallelism dan Sequentially</h2>
+</div>
+<div id="control-parallelism" class="section level3">
+<h3>Control Parallelism</h3>
+<p><strong>Control Parallelism</strong> pada tahap
+<strong>Conquer</strong> adalah pendekatan yang memungkinkan
+bagian-bagian dari masalah diproses secara bersamaan setelah dibagi,
+sehingga mempercepat pemrosesan dengan memanfaatkan sumber daya
+komputasi secara paralel.</p>
+<p><strong>Contoh</strong>  Menjumlahkan <code>[2, 4]</code> dan
+<code>[6, 8]</code> secara bersamaan.</p>
+<p><strong>Intinya</strong><br />
+Control Parallelism mempercepat pemrosesan dengan melakukan tugas-tugas
+secara bersamaan.</p>
+</div>
+<div id="sequentially" class="section level3">
+<h3>Sequentially</h3>
+<p><strong>Sequentially</strong> pada tahap <strong>Conquer</strong>
+memproses bagian-bagian dari masalah secara berurutan satu per satu
+setelah dibagi, memastikan setiap sub-masalah diselesaikan secara
+bergantian tanpa pemrosesan bersamaan.</p>
+<p><strong>Contoh</strong><br />
+Menghitung jumlah elemen array <code>[2, 4, 6, 8]</code> dengan
+menambahkan elemen satu per satu dalam urutan.</p>
+<p><strong>Intinya</strong><br />
+Sequentially memastikan bahwa setiap bagian diproses satu per satu,
+tanpa ada bagian yang diproses bersamaan.</p>
+<hr />
+</div>
+</div>
+</div>
+<div class="container1">
+<div id="ilustrasi-dan-kasus" class="section level1 header-container">
+<h1>Ilustrasi dan Kasus</h1>
+</div>
+<p>Fahri Muhammad adalah mahasiswa baru Statistika di Universitas Sultan
+Ageng Tirtayasa (Untirta). Ia sedang mengerjakan tugas Algoritma
+Pemrograman. Ia punya array NIM 33 teman sekelasnya yang acak:
+<code>[3338250042, 3338250027, 3338250058, 3338250019, 3338250034, ...]</code>
+tapi untuk presentasi ia ambil 5 NIM pertama dari paling depan.</p>
+<div class="content-container">
+<div id="langkah-algoritma-penyelesaiannya" class="section level2 special-header">
+<h2><strong>Langkah Algoritma penyelesaiannya</strong></h2>
+</div>
+<p>Fahri terapkan <strong>Merge Sort</strong>:</p>
+<p>Divide (Branching Factor: 2): “Pecah dulu jadi 2 bagian balance!”</p>
+<ul>
+<li>Bagian 1: <code>[3338250042, 3338250027, 3338250058]</code> (3
+NIM)</li>
+<li>Bagian 2: <code>[3338250019, 3338250034]</code> (2 NIM) Balance
+60:40</li>
+</ul>
+<p>Divide lagi (Data Dependence: index-based):</p>
+<ul>
+<li>1a: <code>[3338250042]</code></li>
+<li>1b: <code>[3338250027, 3338250058]</code></li>
+<li>2a: <code>[3338250019]</code></li>
+<li>2b: <code>[3338250034]</code></li>
+</ul>
+<p>Conquer (Control Parallelism): “Urutkan 4 sub-array secara
+paralel”</p>
+<ul>
+<li>Iterasi 1b: <code>[3338250027, 3338250058]</code> -&gt; Divide:
+<code>[3338250027]</code> + <code>[3338250058]</code> -&gt; sudah
+urut</li>
+<li>Semua single element -&gt; sudah urut</li>
+</ul>
+<p>Combine (Sequentially):</p>
+<ul>
+<li>1a: <code>[3338250042]</code> + 1b:
+<code>[3338250027, 3338250058]</code> -&gt; Bagian 1:
+<code>[3338250027, 3338250042, 3338250058]</code></li>
+<li>2a: <code>[3338250019]</code> + 2b: <code>[3338250034]</code> -&gt;
+<code>[3338250019, 3338250034]</code></li>
+<li>Final: Bagian 1 + Bagian 2 -&gt;
+<code>[3338250019, 3338250027, 3338250034, 3338250042, 3338250058]</code></li>
+</ul>
+<p>fahri mendapatkan array terurut dikelasnya menggukan prinsip divide,
+conquer, combine.</p>
+<p>Dosen, “Nim dengan nomor belakang <code>19, 27, 34, 42, 58</code>
+silahkan maju kedepan”</p>
+</div>
+<div class="content-container">
+<div id="implementasi-r" class="section level2 special-header">
+<h2>Implementasi R</h2>
+</div>
+<pre class="r"><code>merge_sort_dc &lt;- function(arr, depth = 0) {
+  cat(sprintf(&quot;Level %d - Branching Factor: 2\n&quot;, depth))
+  
+  n &lt;- length(arr)
+  if(n &lt;= 1) {
+    cat(sprintf(&quot;Base case: %s\n&quot;, paste(arr, collapse=&quot;, &quot;)))
     return(arr)
   }
-  mid &lt;- floor(length(arr) / 2)
-  left &lt;- merge_sort(arr[1:mid])
-  right &lt;- merge_sort(arr[(mid + 1):length(arr)])
-  return(merge(left, right))
-}
-merge &lt;- function(left, right) {
-  result &lt;- c()
-  i &lt;- 1
-  j &lt;- 1
-  while (i &lt;= length(left) &amp;&amp; j &lt;= length(right)) {
-    if (left[i] &lt;= right[j]) {
-      result &lt;- c(result, left[i])
-      i &lt;- i + 1
-    } else {
-      result &lt;- c(result, right[j])
-      j &lt;- j + 1
-    }
-  }
-  result &lt;- c(result, left[i:length(left)], right[j:length(right)])
+  
+  # Divide (Balance &amp; Data Dependence, dan juga Branching Factor)
+  mid &lt;- ceiling(n/2)
+  left &lt;- arr[1:mid]
+  right &lt;- arr[(mid+1):n]
+  
+  cat(sprintf(&quot;Balance: Pecah %d → Left:%d Right:%d (Data Dependence: index-based)\n&quot;, 
+              n, length(left), length(right)))
+  
+  # Conquer (Control Parallelism)
+  left_sorted &lt;- merge_sort_dc(left, depth+1)
+  right_sorted &lt;- merge_sort_dc(right, depth+1)
+  
+  # Combine (Sequentially)
+  result &lt;- merge(left_sorted, right_sorted)
+  cat(sprintf(&quot;Combine: [%s] + [%s] → [%s]\n&quot;, 
+              paste(left_sorted, collapse=&quot;,&quot;), 
+              paste(right_sorted, collapse=&quot;,&quot;), 
+              paste(result, collapse=&quot;,&quot;)))
   return(result)
-}</code></pre>
-</div>
-<div class="content-container">
-<div id="quick-sort" class="section level2 special-header">
-<h2>Quick Sort</h2>
-</div>
-<p>Quick Sort bekerja dengan memilih satu elemen sebagai
-<strong>pivot</strong>, kemudian membagi array ke dalam dua bagian,
-yaitu elemen-elemen di sebelah kiri yang bernilai lebih kecil dari pivot
-dan elemen-elemen di sebelah kanan yang bernilai lebih besar dari pivot.
-Setelah pemisahan ini, proses yang sama diterapkan kembali secara
-rekursif pada kedua bagian tersebut hingga seluruh array terurut.</p>
-<pre class="r"><code>quick_sort &lt;- function(arr) {
-  if (length(arr) &lt;= 1) {
-    return(arr)
-  }
-  pivot &lt;- arr[1]
-  less &lt;- arr[arr &lt; pivot]
-  equal &lt;- arr[arr == pivot]
-  greater &lt;- arr[arr &gt; pivot]
-  return(c(quick_sort(less), equal, quick_sort(greater)))
-}</code></pre>
-</div>
-</div>
-<div class="container1">
-<div id="non-comparasion-sort" class="section level1 header-container">
-<h1>Non-Comparasion Sort</h1>
-</div>
-<div class="content-container">
-<div id="radix-sort" class="section level2 special-header">
-<h2>Radix Sort</h2>
-</div>
-<p>Radix Sort mengurutkan angka dengan memproses setiap digit secara
-terpisah, dimulai dari digit paling rendah (least significant digit)
-hingga digit paling tinggi (most significant digit). Pada setiap tahap,
-algoritma menggunakan metode pengurutan stabil seperti Counting Sort
-untuk mengurutkan elemen berdasarkan digit yang sedang diproses,
-sehingga memastikan bahwa urutan relatif elemen dengan digit yang sama
-tetap terjaga.</p>
-<pre class="r"><code>radix_sort &lt;- function(arr) {
-  max_val &lt;- max(arr)
-  exp &lt;- 1
-  while (max_val %/% exp &gt; 0) {
-    buckets &lt;- vector(&quot;list&quot;, 10)
-    for (x in arr) {
-      digit &lt;- (x %/% exp) %% 10
-      buckets[[digit + 1]] &lt;- c(buckets[[digit + 1]], x)
-    }
-    arr &lt;- unlist(buckets)
-    exp &lt;- exp * 10
-  }
-  return(arr)
-}</code></pre>
-</div>
-<div class="content-container">
-<div id="counting-sort" class="section level2 special-header">
-<h2>Counting Sort</h2>
-</div>
-<p>Counting Sort (Sortir Hitung) adalah algoritma yang sangat
-efisienketika nilai data berada pada rentang (range) yang sudah
-diketahui dan relatif terbatas (misalnya hanya bilangan 0–9 atau 1–100).
-Algoritma ini bekerja dengan membuat sebuah array bantu (seperti “ember”
-atau tabel frekuensi) untuk menghitung berapa kali setiap nilai muncul,
-lalu menggunakan informasi frekuensi tersebut untuk menyusun kembali
-elemen-elemen ke dalam array keluaran dalam urutan yang terurut.</p>
-<pre class="r"><code>counting_sort &lt;- function(arr) {
-  max_val &lt;- max(arr)
-  count &lt;- numeric(max_val + 1)
-  output &lt;- numeric(length(arr))
+}
 
-  for (x in arr) count[x + 1] &lt;- count[x + 1] + 1
-  for (i in 2:length(count)) count[i] &lt;- count[i] + count[i-1]
-  for (i in seq(length(arr), 1)) {
-    output[count[arr[i] + 1]] &lt;- arr[i]
-    count[arr[i] + 1] &lt;- count[arr[i] + 1] - 1
-  }
-  return(output)
-}</code></pre>
+merge &lt;- function(a, b) {
+  if(length(a) == 0) return(b)
+  if(length(b) == 0) return(a)
+  if(a[1] &lt;= b[1]) return(c(a[1], merge(a[-1], b)))
+  return(c(b[1], merge(a, b[-1])))
+}
+
+# Test
+set.seed(123)
+nim &lt;- sample(3338250001:3338250099, 5)
+cat(&quot;NIM Awal:&quot;, nim, &quot;\n&quot;)</code></pre>
+<pre><code>## NIM Awal: 3338250031 3338250079 3338250051 3338250014 3338250067</code></pre>
+<pre class="r"><code>hasil &lt;- merge_sort_dc(nim)</code></pre>
+<pre><code>## Level 0 - Branching Factor: 2
+## Balance: Pecah 5 → Left:3 Right:2 (Data Dependence: index-based)
+## Level 1 - Branching Factor: 2
+## Balance: Pecah 3 → Left:2 Right:1 (Data Dependence: index-based)
+## Level 2 - Branching Factor: 2
+## Balance: Pecah 2 → Left:1 Right:1 (Data Dependence: index-based)
+## Level 3 - Branching Factor: 2
+## Base case: 3338250031
+## Level 3 - Branching Factor: 2
+## Base case: 3338250079
+## Combine: [3338250031] + [3338250079] → [3338250031,3338250079]
+## Level 2 - Branching Factor: 2
+## Base case: 3338250051
+## Combine: [3338250031,3338250079] + [3338250051] → [3338250031,3338250051,3338250079]
+## Level 1 - Branching Factor: 2
+## Balance: Pecah 2 → Left:1 Right:1 (Data Dependence: index-based)
+## Level 2 - Branching Factor: 2
+## Base case: 3338250014
+## Level 2 - Branching Factor: 2
+## Base case: 3338250067
+## Combine: [3338250014] + [3338250067] → [3338250014,3338250067]
+## Combine: [3338250031,3338250051,3338250079] + [3338250014,3338250067] → [3338250014,3338250031,3338250051,3338250067,3338250079]</code></pre>
+<pre class="r"><code>cat(&quot;Hasil Terurut:&quot;, hasil, &quot;\n&quot;)</code></pre>
+<pre><code>## Hasil Terurut: 3338250014 3338250031 3338250051 3338250067 3338250079</code></pre>
+<p><strong>Penjelasan syntax</strong></p>
+<pre><code>
+(&quot;Pecah %d → Left:%d Right:%d&quot;, n, left, right)
+         |    |         |      |       |
+         |    |         |      |       → right = 2
+         |    |         |      → left = 3
+         |    |         → n = 5
+         |    → %d (numeric)
+         → %d (numeric)
+</code></pre>
 </div>
 </div>
 <div class="container1">
@@ -1043,9 +1066,9 @@ elemen-elemen ke dalam array keluaran dalam urutan yang terurut.</p>
 <h1>Daftar Pustaka</h1>
 </div>
 <div id="refs">
-<p>Cherukuri, N. S. (2021). A comprehensive study of various sorting
-algorithms. International Journal of Science and Research, 10(11),
-278–282.</p>
+<p>Yang, C., Ning, X., Yu, D., Sun, H., Kang, G., &amp; Wang, H. (2025).
+A divide-and-conquer strategy for integer programming problems.
+Electronic Research Archive, 33(6), 3950-3967. <a href="https://doi.org/10.3934/era.2025175" class="uri">https://doi.org/10.3934/era.2025175</a></p>
 </div>
 </div>
 
