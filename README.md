@@ -4,6 +4,10 @@
 Mini project ini dibuat untuk memenuhi tugas mata kuliah **Algoritma Pemrograman**.  
 Project berfokus pada implementasi dan ilustrasi beberapa algoritma **sorting** dan **searching** (seperti Merge Sort, Quick Sort, Radix Sort, Counting Sort, Sequential Search, Binary Search, Jump Search, Interpolation Search, dan BST/Hash Search) menggunakan bahasa pemrograman R, lengkap dengan studi kasus sederhana dan visualisasi langkah kerjanya.
 
+# Anggota Kelompok
+1. Muhammad Taqi Husaini 3338250053
+2. Raynaldi 3338250031
+3. Fahri Muhammad 3338250044
 # Struktur Project
 <pre><code>
 Devide-ut-imperes, Algorithm-of-Sorting-Seacrhing-and-Greedy-Method.Proj
