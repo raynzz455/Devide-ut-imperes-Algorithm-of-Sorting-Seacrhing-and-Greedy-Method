@@ -8,6 +8,7 @@ Project berfokus pada implementasi dan ilustrasi beberapa algoritma **sorting** 
 1. Muhammad Taqi Husaini 3338250053
 2. Raynaldi 3338250031
 3. Fahri Muhammad 3338250044
+
 # Struktur Project
 <pre><code>
 Devide-ut-imperes, Algorithm-of-Sorting-Seacrhing-and-Greedy-Method.Proj
