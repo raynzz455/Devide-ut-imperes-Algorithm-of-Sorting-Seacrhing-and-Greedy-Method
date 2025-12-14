@@ -836,12 +836,43 @@ Combine.</p>
 </div>
 <div id="contoh" class="section level3">
 <h3>Contoh</h3>
+<p>Misalkan ada array nilai ujian:
+<code>[7, 2, 9, 4, 5, 1, 8, 3]</code>.<br />
+Algoritma akan selalu membagi array menjadi 2 bagian hampir sama besar
+di langkah Divide:</p>
 <ul>
-<li>Array <code>[1, 2, 3, 4]</code> dibagi menjadi 2 bagian → Branching
-Factor = 2</li>
-<li>Array <code>[1, 2, 3, 4, 5, 6]</code> dibagi menjadi 3 bagian →
-Branching Factor = 3</li>
+<li><p>Langkah 1: <code>[7,2,9,4,5,1,8,3]</code> →
+<code>[7,2,9,4]</code> dan <code>[5,1,8,3]</code> (2
+submasalah)</p></li>
+<li><p>Langkah 2: <code>[7,2,9,4]</code> → <code>[7,2]</code> dan
+<code>[9,4]</code> (2 submasalah lagi), dst.</p></li>
 </ul>
+<p>Di setiap pemanggilan rekursi, masalah dipecah menjadi 2 submasalah →
+branching factor = 2.</p>
+<p><strong>Implementasi Syntax R</strong></p>
+<pre class="r"><code>branching_once &lt;- function(vec) {
+  # Langkah 1
+  cat(&quot;Langkah 1:&quot;, vec, &quot;\n&quot;)
+  mid1 &lt;- floor(length(vec) / 2)
+  left1  &lt;- vec[1:mid1]
+  right1 &lt;- vec[(mid1 + 1):length(vec)]
+  cat(&quot;  →&quot;, left1, &quot;dan&quot;, right1, &quot;(2 submasalah)\n\n&quot;)
+  
+  # Langkah 2: pecah bagian kiri dari langkah 1
+  cat(&quot;Langkah 2:&quot;, left1, &quot;\n&quot;)
+  mid2 &lt;- floor(length(left1) / 2)
+  left2  &lt;- left1[1:mid2]
+  right2 &lt;- left1[(mid2 + 1):length(left1)]
+  cat(&quot;  →&quot;, left2, &quot;dan&quot;, right2, &quot;(2 submasalah lagi)\n&quot;)
+}
+
+x &lt;- c(7, 2, 9, 4, 5, 1, 8, 3)
+branching_once(x)</code></pre>
+<pre><code>## Langkah 1: 7 2 9 4 5 1 8 3 
+##   → 7 2 9 4 dan 5 1 8 3 (2 submasalah)
+## 
+## Langkah 2: 7 2 9 4 
+##   → 7 2 dan 9 4 (2 submasalah lagi)</code></pre>
 <p><strong>Intinya</strong><br />
 Branching Factor menunjukkan seberapa banyak bagian kecil yang
 dihasilkan pada setiap langkah.</p>
@@ -862,11 +893,42 @@ keseluruhan.</p>
 <div id="contoh-1" class="section level3">
 <h3>Contoh</h3>
 <ul>
-<li><code>[3, 5, 2, 7]</code> → <code>[3, 5]</code> dan
-<code>[2, 7]</code></li>
-<li><code>[11, 5, 7, 3, 9]</code> → <code>[11, 5]</code> dan
-<code>[7, 3, 9]</code></li>
+<li><p><code>[4, 8, 2, 6]</code> → <code>[4, 8]</code> dan
+<code>[2, 6]</code> (2 dan 2, seimbang)</p></li>
+<li><p><code>[10, 3, 5, 7, 9, 1]</code> → <code>[10, 3, 5]</code> dan
+<code>[7, 9, 1]</code> (3 dan 3, seimbang)</p></li>
 </ul>
+<p><strong>Implementasi syntax R</strong></p>
+<pre class="r"><code>split_balanced &lt;- function(vec) {
+  n &lt;- length(vec)
+  
+  if (n &lt;= 1) {
+    return(list(left = vec, right = c()))
+  }
+  
+  mid &lt;- floor(n / 2)
+  left  &lt;- vec[1:mid]
+  right &lt;- vec[(mid + 1):n]
+  
+  list(left = left, right = right)
+}
+
+# Contoh 1
+v1 &lt;- c(3, 5, 2, 7)
+split_balanced(v1)</code></pre>
+<pre><code>## $left
+## [1] 3 5
+## 
+## $right
+## [1] 2 7</code></pre>
+<pre class="r"><code># Contoh 2
+v2 &lt;- c(11, 5, 7, 3, 9)
+split_balanced(v2)</code></pre>
+<pre><code>## $left
+## [1] 11  5
+## 
+## $right
+## [1] 7 3 9</code></pre>
 <p><strong>Intinya</strong><br />
 Balance memastikan pemecahan masalah dilakukan secara efisien dan
 merata.</p>
@@ -886,8 +948,52 @@ terbaik.</p>
 </div>
 <div id="contoh-2" class="section level3">
 <h3>Contoh</h3>
-<p>Mencari elemen pada <code>[1, 3, 5, 7, 9]</code> → dibagi berdasarkan
-nilai tengah (5).</p>
+<p>Misalkan ingin mencari nilai 18 pada array terurut:
+<code>[5, 9, 12, 15, 18, 21, 24]</code>.<br />
+</p>
+<ul>
+<li>Algoritma melihat elemen tengah yaitu <code>15</code> (bukan sekadar
+membagi <code>7</code> elemen menjadi <code>3</code> dan <code>4</code>,
+tetapi memakai nilai <code>15</code> sebagai acuan).<br />
+</li>
+<li>Karena target <code>(18) &gt; 15</code>, bagian kiri
+<code>[5, 9, 12, 15]</code> dibuang, dan pencarian hanya dilanjutkan
+pada bagian kanan <code>[18, 21, 24]</code>.<br />
+</li>
+<li>Keputusan “buang kiri atau kanan” sepenuhnya bergantung pada
+perbandingan nilai target dan nilai tengah, jadi fungsi Divide di sini
+bergantung pada data (data dependent), bukan hanya ukuran.</li>
+</ul>
+<p><strong>Implementasi syntax R</strong></p>
+<pre class="r"><code>binary_search_data_dependence &lt;- function(vec, target) {
+  left  &lt;- 1
+  right &lt;- length(vec)
+  
+  # hitung indeks tengah
+  mid &lt;- floor((left + right) / 2)
+  cat(&quot;Array :&quot;, vec, &quot;\n&quot;)
+  cat(&quot;Target:&quot;, target, &quot;\n&quot;)
+  cat(&quot;Indeks tengah:&quot;, mid, &quot;dengan nilai&quot;, vec[mid], &quot;\n&quot;)
+  
+  if (target == vec[mid]) {
+    cat(&quot;Target sama dengan nilai tengah → ditemukan di indeks&quot;, mid, &quot;\n&quot;)
+  } else if (target &gt; vec[mid]) {
+    cat(&quot;Target &gt;&quot;, vec[mid], &quot;→ buang bagian kiri&quot;, vec[1:mid], &quot;\n&quot;)
+    cat(&quot;Lanjutkan pencarian pada bagian kanan:&quot;, vec[(mid + 1):right], &quot;\n&quot;)
+  } else {
+    cat(&quot;Target &lt;&quot;, vec[mid], &quot;→ buang bagian kanan&quot;, vec[mid:right], &quot;\n&quot;)
+    cat(&quot;Lanjutkan pencarian pada bagian kiri:&quot;, vec[left:(mid - 1)], &quot;\n&quot;)
+  }
+}
+
+# Contoh pemanggilan
+vektor &lt;- c(5, 9, 12, 15, 18, 21, 24)
+binary_search_data_dependence(vektor, 18)</code></pre>
+<pre><code>## Array : 5 9 12 15 18 21 24 
+## Target: 18 
+## Indeks tengah: 4 dengan nilai 15 
+## Target &gt; 15 → buang bagian kiri 5 9 12 15 
+## Lanjutkan pencarian pada bagian kanan: 18 21 24</code></pre>
 <p><strong>Intinya</strong><br />
 Pembagian mempertimbangkan nilai elemen agar pemecahan lebih
 efektif.</p>
@@ -905,8 +1011,43 @@ efektif.</p>
 bagian-bagian dari masalah diproses secara bersamaan setelah dibagi,
 sehingga mempercepat pemrosesan dengan memanfaatkan sumber daya
 komputasi secara paralel.</p>
-<p><strong>Contoh</strong>  Menjumlahkan <code>[2, 4]</code> dan
-<code>[6, 8]</code> secara bersamaan.</p>
+<p><strong>Contoh</strong>  Misalkan ada data waktu belajar harian
+seorang mahasiswa dalam jam: <code>[2, 4, 6, 8]</code><br />
+Mahasiswa ingin mengetahui total jam belajar. Dengan pendekatan divide
+and conquer:</p>
+<ul>
+<li>Langkah 1 (Divide): data dipecah menjadi dua bagian seimbang: [2, 4]
+dan [6, 8].</li>
+<li>Langkah 2 (Conquer dengan control parallelism): kedua bagian ini
+boleh diproses secara bersamaan:
+<ul>
+<li>Hitung jumlah [2, 4] → 6</li>
+<li>Hitung jumlah [6, 8] → 14</li>
+</ul></li>
+<li>Langkah 3 (Combine): gabungkan hasil keduanya: 6 + 14 = 20.</li>
+</ul>
+<p>Di tahap Conquer, dua penyelesaian sub-masalah “jumlahkan bagian
+kiri” dan “jumlahkan bagian kanan” adalah independen dan bisa dijalankan
+paralel jika ada lebih dari satu data.</p>
+<p><strong>Implementasi Syntax R</strong></p>
+<pre class="r"><code>jam_belajar &lt;- function(vec) {
+  if (length(vec) == 1) {
+    return(vec[1])
+  }
+  
+  mid &lt;- floor(length(vec) / 2)
+  left  &lt;- vec[1:mid]
+  right &lt;- vec[(mid + 1):length(vec)]
+  
+  sum_left  &lt;- jam_belajar(left)   # tugas 1: jumlahkan bagian kiri
+  sum_right &lt;- jam_belajar(right)  # tugas 2: jumlahkan bagian kanan
+  
+  return(sum_left + sum_right)
+}
+
+data_belajar &lt;- c(2, 4, 6, 8)
+jam_belajar(data_belajar)</code></pre>
+<pre><code>## [1] 20</code></pre>
 <p><strong>Intinya</strong><br />
 Control Parallelism mempercepat pemrosesan dengan melakukan tugas-tugas
 secara bersamaan.</p>
@@ -918,8 +1059,33 @@ memproses bagian-bagian dari masalah secara berurutan satu per satu
 setelah dibagi, memastikan setiap sub-masalah diselesaikan secara
 bergantian tanpa pemrosesan bersamaan.</p>
 <p><strong>Contoh</strong><br />
-Menghitung jumlah elemen array <code>[2, 4, 6, 8]</code> dengan
-menambahkan elemen satu per satu dalam urutan.</p>
+Misalkan ada data waktu belajar harian seorang mahasiswa:
+<code>[2, 4, 6, 8]</code><br />
+Mahasiswa ingin menghitung total jam belajar, tetapi dilakukan secara
+berurutan:</p>
+<ul>
+<li>Tambah 2 → total sementara 2</li>
+<li>Tambah 4 → total sementara 6</li>
+<li>Tambah 6 → total sementara 12</li>
+<li>Tambah 8 → total akhir 20</li>
+</ul>
+<p><strong>Implementasi Syntax R</strong></p>
+<pre class="r"><code>sequential &lt;- function(vec) {
+  total &lt;- 0
+  for (x in vec) {
+    total &lt;- total + x
+    cat(&quot;Menambahkan&quot;, x, &quot;→ total sementara =&quot;, total, &quot;\n&quot;)
+  }
+  return(total)
+}
+
+data_belajar &lt;- c(2, 4, 6, 8)
+sequential(data_belajar)</code></pre>
+<pre><code>## Menambahkan 2 → total sementara = 2 
+## Menambahkan 4 → total sementara = 6 
+## Menambahkan 6 → total sementara = 12 
+## Menambahkan 8 → total sementara = 20</code></pre>
+<pre><code>## [1] 20</code></pre>
 <p><strong>Intinya</strong><br />
 Sequentially memastikan bahwa setiap bagian diproses satu per satu,
 tanpa ada bagian yang diproses bersamaan.</p>

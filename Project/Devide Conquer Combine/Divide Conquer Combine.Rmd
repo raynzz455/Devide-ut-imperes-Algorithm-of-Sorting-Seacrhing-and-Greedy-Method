@@ -72,9 +72,36 @@ Dalam paradigma Divide, Conquer, dan Combine, terdapat 4 konsep tambahan yang me
 
 ### Contoh
 
--   Array `[1, 2, 3, 4]` dibagi menjadi 2 bagian → Branching Factor = 2
--   Array `[1, 2, 3, 4, 5, 6]` dibagi menjadi 3 bagian → Branching Factor = 3
+Misalkan ada array nilai ujian: `[7, 2, 9, 4, 5, 1, 8, 3]`.\
+Algoritma akan selalu membagi array menjadi 2 bagian hampir sama besar di langkah Divide:
 
+- Langkah 1: `[7,2,9,4,5,1,8,3]` → `[7,2,9,4]` dan `[5,1,8,3]` (2 submasalah)
+
+- Langkah 2: `[7,2,9,4]` → `[7,2]` dan `[9,4]` (2 submasalah lagi), dst.
+
+Di setiap pemanggilan rekursi, masalah dipecah menjadi 2 submasalah → branching factor = 2.
+
+**Implementasi Syntax R**
+```{r}
+branching_once <- function(vec) {
+  # Langkah 1
+  cat("Langkah 1:", vec, "\n")
+  mid1 <- floor(length(vec) / 2)
+  left1  <- vec[1:mid1]
+  right1 <- vec[(mid1 + 1):length(vec)]
+  cat("  →", left1, "dan", right1, "(2 submasalah)\n\n")
+  
+  # Langkah 2: pecah bagian kiri dari langkah 1
+  cat("Langkah 2:", left1, "\n")
+  mid2 <- floor(length(left1) / 2)
+  left2  <- left1[1:mid2]
+  right2 <- left1[(mid2 + 1):length(left1)]
+  cat("  →", left2, "dan", right2, "(2 submasalah lagi)\n")
+}
+
+x <- c(7, 2, 9, 4, 5, 1, 8, 3)
+branching_once(x)
+```
 **Intinya**\
 Branching Factor menunjukkan seberapa banyak bagian kecil yang dihasilkan pada setiap langkah.
 :::
@@ -89,9 +116,34 @@ Branching Factor menunjukkan seberapa banyak bagian kecil yang dihasilkan pada s
 
 ### Contoh
 
--   `[3, 5, 2, 7]` → `[3, 5]` dan `[2, 7]`
--   `[11, 5, 7, 3, 9]` → `[11, 5]` dan `[7, 3, 9]`
+- `[4, 8, 2, 6]` → `[4, 8]` dan `[2, 6]` (2 dan 2, seimbang)
 
+- `[10, 3, 5, 7, 9, 1]` → `[10, 3, 5]` dan `[7, 9, 1]` (3 dan 3, seimbang)
+
+**Implementasi syntax R**
+```{r}
+split_balanced <- function(vec) {
+  n <- length(vec)
+  
+  if (n <= 1) {
+    return(list(left = vec, right = c()))
+  }
+  
+  mid <- floor(n / 2)
+  left  <- vec[1:mid]
+  right <- vec[(mid + 1):n]
+  
+  list(left = left, right = right)
+}
+
+# Contoh 1
+v1 <- c(3, 5, 2, 7)
+split_balanced(v1)
+
+# Contoh 2
+v2 <- c(11, 5, 7, 3, 9)
+split_balanced(v2)
+```
 **Intinya**\
 Balance memastikan pemecahan masalah dilakukan secara efisien dan merata.
 :::
@@ -106,8 +158,40 @@ Balance memastikan pemecahan masalah dilakukan secara efisien dan merata.
 
 ### Contoh
 
-Mencari elemen pada `[1, 3, 5, 7, 9]` → dibagi berdasarkan nilai tengah (5).
+Misalkan ingin mencari nilai 18 pada array terurut: `[5, 9, 12, 15, 18, 21, 24]`.\
 
+- Algoritma melihat elemen tengah yaitu `15` (bukan sekadar membagi `7` elemen menjadi `3` dan `4`, tetapi memakai nilai `15` sebagai acuan).\
+- Karena target `(18) > 15`, bagian kiri `[5, 9, 12, 15]` dibuang, dan pencarian hanya dilanjutkan pada bagian kanan `[18, 21, 24]`.\
+- Keputusan “buang kiri atau kanan” sepenuhnya bergantung pada perbandingan nilai target dan nilai tengah, jadi fungsi Divide di sini bergantung pada data (data dependent), bukan hanya ukuran. 
+
+**Implementasi syntax R**
+```{r}
+binary_search_data_dependence <- function(vec, target) {
+  left  <- 1
+  right <- length(vec)
+  
+  # hitung indeks tengah
+  mid <- floor((left + right) / 2)
+  cat("Array :", vec, "\n")
+  cat("Target:", target, "\n")
+  cat("Indeks tengah:", mid, "dengan nilai", vec[mid], "\n")
+  
+  if (target == vec[mid]) {
+    cat("Target sama dengan nilai tengah → ditemukan di indeks", mid, "\n")
+  } else if (target > vec[mid]) {
+    cat("Target >", vec[mid], "→ buang bagian kiri", vec[1:mid], "\n")
+    cat("Lanjutkan pencarian pada bagian kanan:", vec[(mid + 1):right], "\n")
+  } else {
+    cat("Target <", vec[mid], "→ buang bagian kanan", vec[mid:right], "\n")
+    cat("Lanjutkan pencarian pada bagian kiri:", vec[left:(mid - 1)], "\n")
+  }
+}
+
+# Contoh pemanggilan
+vektor <- c(5, 9, 12, 15, 18, 21, 24)
+binary_search_data_dependence(vektor, 18)
+
+```
 **Intinya**\
 Pembagian mempertimbangkan nilai elemen agar pemecahan lebih efektif.
 
@@ -123,7 +207,38 @@ Pembagian mempertimbangkan nilai elemen agar pemecahan lebih efektif.
 **Control Parallelism** pada tahap **Conquer** adalah pendekatan yang memungkinkan bagian-bagian dari masalah diproses secara bersamaan setelah dibagi, sehingga mempercepat pemrosesan dengan memanfaatkan sumber daya komputasi secara paralel.
 
 **Contoh**\ 
-Menjumlahkan `[2, 4]` dan `[6, 8]` secara bersamaan.
+Misalkan ada data waktu belajar harian seorang mahasiswa dalam jam: `[2, 4, 6, 8]`\
+Mahasiswa ingin mengetahui total jam belajar. Dengan pendekatan divide and conquer:
+
+- Langkah 1 (Divide): data dipecah menjadi dua bagian seimbang: [2, 4] dan [6, 8].
+- Langkah 2 (Conquer dengan control parallelism): kedua bagian ini boleh diproses secara bersamaan:
+  - Hitung jumlah [2, 4] → 6
+  - Hitung jumlah [6, 8] → 14
+- Langkah 3 (Combine): gabungkan hasil keduanya: 6 + 14 = 20.
+
+Di tahap Conquer, dua penyelesaian sub-masalah “jumlahkan bagian kiri” dan “jumlahkan bagian kanan” adalah independen dan bisa dijalankan paralel jika ada lebih dari satu data.
+
+**Implementasi Syntax R**
+```{r}
+jam_belajar <- function(vec) {
+  if (length(vec) == 1) {
+    return(vec[1])
+  }
+  
+  mid <- floor(length(vec) / 2)
+  left  <- vec[1:mid]
+  right <- vec[(mid + 1):length(vec)]
+  
+  sum_left  <- jam_belajar(left)   # tugas 1: jumlahkan bagian kiri
+  sum_right <- jam_belajar(right)  # tugas 2: jumlahkan bagian kanan
+  
+  return(sum_left + sum_right)
+}
+
+data_belajar <- c(2, 4, 6, 8)
+jam_belajar(data_belajar)
+
+```
 
 **Intinya**\
 Control Parallelism mempercepat pemrosesan dengan melakukan tugas-tugas secara bersamaan.
@@ -133,7 +248,28 @@ Control Parallelism mempercepat pemrosesan dengan melakukan tugas-tugas secara b
 **Sequentially** pada tahap **Conquer** memproses bagian-bagian dari masalah secara berurutan satu per satu setelah dibagi, memastikan setiap sub-masalah diselesaikan secara bergantian tanpa pemrosesan bersamaan.
 
 **Contoh**\
-Menghitung jumlah elemen array `[2, 4, 6, 8]` dengan menambahkan elemen satu per satu dalam urutan.
+Misalkan ada data waktu belajar harian seorang mahasiswa: `[2, 4, 6, 8]`\
+Mahasiswa ingin menghitung total jam belajar, tetapi dilakukan secara berurutan:
+
+- Tambah 2 → total sementara 2
+- Tambah 4 → total sementara 6
+- Tambah 6 → total sementara 12
+- Tambah 8 → total akhir 20
+
+**Implementasi Syntax R**
+```{r}
+sequential <- function(vec) {
+  total <- 0
+  for (x in vec) {
+    total <- total + x
+    cat("Menambahkan", x, "→ total sementara =", total, "\n")
+  }
+  return(total)
+}
+
+data_belajar <- c(2, 4, 6, 8)
+sequential(data_belajar)
+```
 
 **Intinya**\
 Sequentially memastikan bahwa setiap bagian diproses satu per satu, tanpa ada bagian yang diproses bersamaan.
