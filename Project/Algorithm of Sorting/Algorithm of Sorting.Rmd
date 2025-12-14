@@ -90,6 +90,9 @@ Algoritma yang **tidak menggunakan perbandingan langsung** antar elemen. Algorti
 Bubble Sort adalah algoritma sorting yang paling sederhana, dengan gagasan utama melakukan penyisiran berulang pada array sambil membandingkan pasangan elemen yang saling berdampingan dan menukarnya ketika urutannya tidak sesuai (misalnya elemen di kiri lebih besar daripada elemen di kanan).\
 Melalui mekanisme tersebut, elemen bernilai terbesar akan secara bertahap “menggelembung” ke arah posisi paling kanan pada akhir setiap iterasi hingga menempati posisi akhirnya.
 
+### Contoh
+
+Misalalkan terdapat sebuah vektor `[1,4,8,21,6,9,0,14]` diurutkan secara ascending.
 ```{r buble_sort}
 bubble_sort <- function(arr) {
   n <- length(arr)
@@ -105,7 +108,10 @@ bubble_sort <- function(arr) {
   }
   return(arr)
 }
+vektor <- c(1,4,8,21,6,9,0,14)
+bubble_sort(vektor)
 ```
+
 :::
 :::{.content-container}
 :::{.special-header}
@@ -118,13 +124,16 @@ Selection Sort bekerja dengan cara memecah array menjadi dua segmen, yaitu:
 
 Pada setiap iterasi, algoritma mencari elemen dengan nilai terkecil dari bagian yang belum terurut, kemudian menukarnya ke posisi yang semestinya di ujung kanan bagian yang sudah terurut.
 
+### Contoh
+
+Mislkan terdapat sebuah data `[9,14,5,6,2,8,11,17]` perlu di urutkan secara descending.
 ```{r selection_sort}
 selection_sort <- function(arr) {
   n <- length(arr)
   for (i in 1:(n-1)) {
     min_index <- i
     for (j in (i+1):n) {
-      if (arr[j] < arr[min_index]) {
+      if (arr[j] > arr[min_index]) {
         min_index <- j
       }
     }
@@ -135,6 +144,10 @@ selection_sort <- function(arr) {
   }
   return(arr)
 }
+
+vektor <- c(9,14,5,6,2,8,11,17)
+selection_sort(vektor)
+
 ```
 :::
 
@@ -144,6 +157,9 @@ selection_sort <- function(arr) {
 :::
 Insertion Sort bekerja dengan cara mengambil satu elemen dari bagian yang belum terurut, kemudian menyisipkannya pada posisi yang sesuai di dalam bagian array yang sudah terurut sehingga urutan tetap terjaga.
 
+### Contoh
+
+Misalkan sebuah array data `[12,4,2,3,9,10]` perlu diurutkan secara ascending.
 ```{r insertion_sort}
 insertion_sort <- function(arr) {
   n <- length(arr)
@@ -158,7 +174,8 @@ insertion_sort <- function(arr) {
   }
   return(arr)
 }
-
+vektor <- c(12,4,2,3,9,10)
+insertion_sort(vektor)
 ```
 :::
 
@@ -169,20 +186,27 @@ insertion_sort <- function(arr) {
 
 Merge Sort menerapkan strategi **Divide and Conquer (D&C)** dengan cara pertama-tama memecah (Divide) array menjadi sub-array yang semakin kecil hingga tersisa bagian berukuran satu elemen, yang secara alami sudah terurut. Setelah itu, sub-array kecil tersebut digabungkan (Combine/Merge) kembali secara bertahap dengan cara menggabungkan dua bagian terurut menjadi satu array yang tetap terurut hingga seluruh elemen kembali menjadi satu array yang sudah tersusun rapi.
 
+### Contoh 
+
+Misalkan terdapat sebuah data `[7, 2, 9, 4, 5, 1, 8, 3]` yang perlu diurutkan secara ascending.
+
 ```{r merge_sort}
 merge_sort <- function(arr) {
   if (length(arr) <= 1) {
     return(arr)
   }
   mid <- floor(length(arr) / 2)
-  left <- merge_sort(arr[1:mid])
+  left  <- merge_sort(arr[1:mid])
   right <- merge_sort(arr[(mid + 1):length(arr)])
-  return(merge(left, right))
+  return(merge_vec(left, right))
 }
-merge <- function(left, right) {
+
+merge_vec <- function(left, right) {
   result <- c()
   i <- 1
   j <- 1
+  
+  # gabungkan selama keduanya masih punya elemen
   while (i <= length(left) && j <= length(right)) {
     if (left[i] <= right[j]) {
       result <- c(result, left[i])
@@ -192,9 +216,18 @@ merge <- function(left, right) {
       j <- j + 1
     }
   }
-  result <- c(result, left[i:length(left)], right[j:length(right)])
+  if (i <= length(left)) {
+    result <- c(result, left[i:length(left)])
+  }
+  if (j <= length(right)) {
+    result <- c(result, right[j:length(right)])
+  }
+  
   return(result)
 }
+
+x <- c(10, 3, 7, 2, 9, 1)
+merge_sort(x)
 ```
 :::
 
@@ -204,6 +237,19 @@ merge <- function(left, right) {
 :::
 
 Quick Sort bekerja dengan memilih satu elemen sebagai **pivot**, kemudian membagi array ke dalam dua bagian, yaitu elemen-elemen di sebelah kiri yang bernilai lebih kecil dari pivot dan elemen-elemen di sebelah kanan yang bernilai lebih besar dari pivot. Setelah pemisahan ini, proses yang sama diterapkan kembali secara rekursif pada kedua bagian tersebut hingga seluruh array terurut.
+
+### Contoh
+
+Misalakan terdapat sebuah kasus data-data dibawah ini perlu di urutkan secara ascending:
+
+- Contoh 1: campuran kecil-besar, ada duplikat\
+x1 -> `[10, 7, 8, 9, 1, 5]`
+
+- Contoh 2: acak dengan nilai berdekatan\
+x2 -> `[4, 2, 9, 6, 3, 8, 1, 7]`
+
+- Contoh 3: termasuk nilai negatif\
+x3 -> `[3, -1, 4, 0, -5, 2]`
 
 ```{r quick_sort}
 quick_sort <- function(arr) {
@@ -216,6 +262,16 @@ quick_sort <- function(arr) {
   greater <- arr[arr > pivot]
   return(c(quick_sort(less), equal, quick_sort(greater)))
 }
+#1
+x1 <- c(10, 7, 8, 9, 1, 5)
+#2
+x2 <- c(4, 2, 9, 6, 3, 8, 1, 7)
+#3
+x3 <- c(3, -1, 4, 0, -5, 2)
+
+quick_sort(x1)
+quick_sort(x2)
+quick_sort(x3)
 ```
 :::
 :::
@@ -230,6 +286,11 @@ quick_sort <- function(arr) {
 ## Radix Sort
 :::
 Radix Sort mengurutkan angka dengan memproses setiap digit secara terpisah, dimulai dari digit paling rendah (least significant digit) hingga digit paling tinggi (most significant digit). Pada setiap tahap, algoritma menggunakan metode pengurutan stabil seperti Counting Sort untuk mengurutkan elemen berdasarkan digit yang sedang diproses, sehingga memastikan bahwa urutan relatif elemen dengan digit yang sama tetap terjaga.
+
+### Contoh
+
+Seorang petugas perpustakaan memiliki daftar rak yang akan disusun naik\
+`[42, 7, 35, 90, 18, 3, 27, 64, 50]`
 
 ```{r radix_sort}
 radix_sort <- function(arr) {
@@ -247,6 +308,8 @@ radix_sort <- function(arr) {
   return(arr)
 }
 
+rak <- c(42, 7, 35, 90, 18, 3, 27, 64, 50)
+radix_sort(rak)
 ```
 :::
 
@@ -255,6 +318,11 @@ radix_sort <- function(arr) {
 ## Counting Sort
 :::
 Counting Sort (Sortir Hitung) adalah algoritma yang sangat efisienketika nilai data berada pada rentang (range) yang sudah diketahui dan relatif terbatas (misalnya hanya bilangan 0–9 atau 1–100). Algoritma ini bekerja dengan membuat sebuah array bantu (seperti “ember” atau tabel frekuensi) untuk menghitung berapa kali setiap nilai muncul, lalu menggunakan informasi frekuensi tersebut untuk menyusun kembali elemen-elemen ke dalam array keluaran dalam urutan yang terurut.
+
+### Contoh
+
+Misalkan seorang dosen ingin mengurutkan nilai kuis mahasiswa yang hanya berupa skor bulat dari 0 sampai 10:
+`[7, 10, 3, 7, 5, 0, 10, 2, 5, 3, 8]`
 
 ```{r counting_sort}
 counting_sort <- function(arr) {
@@ -270,6 +338,8 @@ counting_sort <- function(arr) {
   }
   return(output)
 }
+nilai_kuis <- c(7, 10, 3, 7, 5, 0, 10, 2, 5, 3, 8)
+counting_sort(nilai_kuis)
 ```
 :::
 :::

@@ -856,6 +856,10 @@ daripada elemen di kanan).<br />
 Melalui mekanisme tersebut, elemen bernilai terbesar akan secara
 bertahap “menggelembung” ke arah posisi paling kanan pada akhir setiap
 iterasi hingga menempati posisi akhirnya.</p>
+<div id="contoh" class="section level3">
+<h3>Contoh</h3>
+<p>Misalalkan terdapat sebuah vektor <code>[1,4,8,21,6,9,0,14]</code>
+diurutkan secara ascending.</p>
 <pre class="r"><code>bubble_sort &lt;- function(arr) {
   n &lt;- length(arr)
   for (i in 1:(n-1)) {
@@ -869,7 +873,11 @@ iterasi hingga menempati posisi akhirnya.</p>
     }
   }
   return(arr)
-}</code></pre>
+}
+vektor &lt;- c(1,4,8,21,6,9,0,14)
+bubble_sort(vektor)</code></pre>
+<pre><code>## [1]  0  1  4  6  8  9 14 21</code></pre>
+</div>
 </div>
 <div class="content-container">
 <div id="selection-sort" class="section level2 special-header">
@@ -884,12 +892,16 @@ yaitu:</p>
 <p>Pada setiap iterasi, algoritma mencari elemen dengan nilai terkecil
 dari bagian yang belum terurut, kemudian menukarnya ke posisi yang
 semestinya di ujung kanan bagian yang sudah terurut.</p>
+<div id="contoh-1" class="section level3">
+<h3>Contoh</h3>
+<p>Mislkan terdapat sebuah data <code>[9,14,5,6,2,8,11,17]</code> perlu
+di urutkan secara descending.</p>
 <pre class="r"><code>selection_sort &lt;- function(arr) {
   n &lt;- length(arr)
   for (i in 1:(n-1)) {
     min_index &lt;- i
     for (j in (i+1):n) {
-      if (arr[j] &lt; arr[min_index]) {
+      if (arr[j] &gt; arr[min_index]) {
         min_index &lt;- j
       }
     }
@@ -899,7 +911,12 @@ semestinya di ujung kanan bagian yang sudah terurut.</p>
     arr[min_index] &lt;- temp
   }
   return(arr)
-}</code></pre>
+}
+
+vektor &lt;- c(9,14,5,6,2,8,11,17)
+selection_sort(vektor)</code></pre>
+<pre><code>## [1] 17 14 11  9  8  6  5  2</code></pre>
+</div>
 </div>
 <div class="content-container">
 <div id="insertion-sort" class="section level2 special-header">
@@ -908,6 +925,10 @@ semestinya di ujung kanan bagian yang sudah terurut.</p>
 <p>Insertion Sort bekerja dengan cara mengambil satu elemen dari bagian
 yang belum terurut, kemudian menyisipkannya pada posisi yang sesuai di
 dalam bagian array yang sudah terurut sehingga urutan tetap terjaga.</p>
+<div id="contoh-2" class="section level3">
+<h3>Contoh</h3>
+<p>Misalkan sebuah array data <code>[12,4,2,3,9,10]</code> perlu
+diurutkan secara ascending.</p>
 <pre class="r"><code>insertion_sort &lt;- function(arr) {
   n &lt;- length(arr)
   for (i in 2:n) {
@@ -920,7 +941,11 @@ dalam bagian array yang sudah terurut sehingga urutan tetap terjaga.</p>
     arr[j + 1] &lt;- key
   }
   return(arr)
-}</code></pre>
+}
+vektor &lt;- c(12,4,2,3,9,10)
+insertion_sort(vektor)</code></pre>
+<pre><code>## [1]  2  3  4  9 10 12</code></pre>
+</div>
 </div>
 <div class="content-container">
 <div id="merge-sort" class="section level2 special-header">
@@ -934,19 +959,26 @@ kecil tersebut digabungkan (Combine/Merge) kembali secara bertahap
 dengan cara menggabungkan dua bagian terurut menjadi satu array yang
 tetap terurut hingga seluruh elemen kembali menjadi satu array yang
 sudah tersusun rapi.</p>
+<div id="contoh-3" class="section level3">
+<h3>Contoh</h3>
+<p>Misalkan terdapat sebuah data <code>[7, 2, 9, 4, 5, 1, 8, 3]</code>
+yang perlu diurutkan secara ascending.</p>
 <pre class="r"><code>merge_sort &lt;- function(arr) {
   if (length(arr) &lt;= 1) {
     return(arr)
   }
   mid &lt;- floor(length(arr) / 2)
-  left &lt;- merge_sort(arr[1:mid])
+  left  &lt;- merge_sort(arr[1:mid])
   right &lt;- merge_sort(arr[(mid + 1):length(arr)])
-  return(merge(left, right))
+  return(merge_vec(left, right))
 }
-merge &lt;- function(left, right) {
+
+merge_vec &lt;- function(left, right) {
   result &lt;- c()
   i &lt;- 1
   j &lt;- 1
+  
+  # gabungkan selama keduanya masih punya elemen
   while (i &lt;= length(left) &amp;&amp; j &lt;= length(right)) {
     if (left[i] &lt;= right[j]) {
       result &lt;- c(result, left[i])
@@ -956,9 +988,20 @@ merge &lt;- function(left, right) {
       j &lt;- j + 1
     }
   }
-  result &lt;- c(result, left[i:length(left)], right[j:length(right)])
+  if (i &lt;= length(left)) {
+    result &lt;- c(result, left[i:length(left)])
+  }
+  if (j &lt;= length(right)) {
+    result &lt;- c(result, right[j:length(right)])
+  }
+  
   return(result)
-}</code></pre>
+}
+
+x &lt;- c(10, 3, 7, 2, 9, 1)
+merge_sort(x)</code></pre>
+<pre><code>## [1]  1  2  3  7  9 10</code></pre>
+</div>
 </div>
 <div class="content-container">
 <div id="quick-sort" class="section level2 special-header">
@@ -970,6 +1013,18 @@ yaitu elemen-elemen di sebelah kiri yang bernilai lebih kecil dari pivot
 dan elemen-elemen di sebelah kanan yang bernilai lebih besar dari pivot.
 Setelah pemisahan ini, proses yang sama diterapkan kembali secara
 rekursif pada kedua bagian tersebut hingga seluruh array terurut.</p>
+<div id="contoh-4" class="section level3">
+<h3>Contoh</h3>
+<p>Misalakan terdapat sebuah kasus data-data dibawah ini perlu di
+urutkan secara ascending:</p>
+<ul>
+<li><p>Contoh 1: campuran kecil-besar, ada duplikat<br />
+x1 -&gt; <code>[10, 7, 8, 9, 1, 5]</code></p></li>
+<li><p>Contoh 2: acak dengan nilai berdekatan<br />
+x2 -&gt; <code>[4, 2, 9, 6, 3, 8, 1, 7]</code></p></li>
+<li><p>Contoh 3: termasuk nilai negatif<br />
+x3 -&gt; <code>[3, -1, 4, 0, -5, 2]</code></p></li>
+</ul>
 <pre class="r"><code>quick_sort &lt;- function(arr) {
   if (length(arr) &lt;= 1) {
     return(arr)
@@ -979,7 +1034,21 @@ rekursif pada kedua bagian tersebut hingga seluruh array terurut.</p>
   equal &lt;- arr[arr == pivot]
   greater &lt;- arr[arr &gt; pivot]
   return(c(quick_sort(less), equal, quick_sort(greater)))
-}</code></pre>
+}
+#1
+x1 &lt;- c(10, 7, 8, 9, 1, 5)
+#2
+x2 &lt;- c(4, 2, 9, 6, 3, 8, 1, 7)
+#3
+x3 &lt;- c(3, -1, 4, 0, -5, 2)
+
+quick_sort(x1)</code></pre>
+<pre><code>## [1]  1  5  7  8  9 10</code></pre>
+<pre class="r"><code>quick_sort(x2)</code></pre>
+<pre><code>## [1] 1 2 3 4 6 7 8 9</code></pre>
+<pre class="r"><code>quick_sort(x3)</code></pre>
+<pre><code>## [1] -5 -1  0  2  3  4</code></pre>
+</div>
 </div>
 </div>
 <div class="container1">
@@ -997,6 +1066,11 @@ algoritma menggunakan metode pengurutan stabil seperti Counting Sort
 untuk mengurutkan elemen berdasarkan digit yang sedang diproses,
 sehingga memastikan bahwa urutan relatif elemen dengan digit yang sama
 tetap terjaga.</p>
+<div id="contoh-5" class="section level3">
+<h3>Contoh</h3>
+<p>Seorang petugas perpustakaan memiliki daftar rak yang akan disusun
+naik<br />
+<code>[42, 7, 35, 90, 18, 3, 27, 64, 50]</code></p>
 <pre class="r"><code>radix_sort &lt;- function(arr) {
   max_val &lt;- max(arr)
   exp &lt;- 1
@@ -1010,7 +1084,12 @@ tetap terjaga.</p>
     exp &lt;- exp * 10
   }
   return(arr)
-}</code></pre>
+}
+
+rak &lt;- c(42, 7, 35, 90, 18, 3, 27, 64, 50)
+radix_sort(rak)</code></pre>
+<pre><code>## [1]  3  7 18 27 35 42 50 64 90</code></pre>
+</div>
 </div>
 <div class="content-container">
 <div id="counting-sort" class="section level2 special-header">
@@ -1023,6 +1102,11 @@ Algoritma ini bekerja dengan membuat sebuah array bantu (seperti “ember”
 atau tabel frekuensi) untuk menghitung berapa kali setiap nilai muncul,
 lalu menggunakan informasi frekuensi tersebut untuk menyusun kembali
 elemen-elemen ke dalam array keluaran dalam urutan yang terurut.</p>
+<div id="contoh-6" class="section level3">
+<h3>Contoh</h3>
+<p>Misalkan seorang dosen ingin mengurutkan nilai kuis mahasiswa yang
+hanya berupa skor bulat dari 0 sampai 10:
+<code>[7, 10, 3, 7, 5, 0, 10, 2, 5, 3, 8]</code></p>
 <pre class="r"><code>counting_sort &lt;- function(arr) {
   max_val &lt;- max(arr)
   count &lt;- numeric(max_val + 1)
@@ -1035,7 +1119,11 @@ elemen-elemen ke dalam array keluaran dalam urutan yang terurut.</p>
     count[arr[i] + 1] &lt;- count[arr[i] + 1] - 1
   }
   return(output)
-}</code></pre>
+}
+nilai_kuis &lt;- c(7, 10, 3, 7, 5, 0, 10, 2, 5, 3, 8)
+counting_sort(nilai_kuis)</code></pre>
+<pre><code>##  [1]  0  2  3  3  5  5  7  7  8 10 10</code></pre>
+</div>
 </div>
 </div>
 <div class="container1">
